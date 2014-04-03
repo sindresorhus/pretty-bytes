@@ -1,4 +1,4 @@
-# pretty-bytes [![Build Status](https://travis-ci.org/sindresorhus/pretty-bytes.png?branch=master)](http://travis-ci.org/sindresorhus/pretty-bytes)
+# pretty-bytes [![Build Status](https://travis-ci.org/sindresorhus/pretty-bytes.svg?branch=master)](https://travis-ci.org/sindresorhus/pretty-bytes)
 
 > Convert bytes to a human readable string: `1337` → `1.34 kB`
 
@@ -14,26 +14,20 @@ Useful for displaying file sizes for humans.
 
 Download [manually](https://github.com/sindresorhus/pretty-bytes/releases) or with a package-manager.
 
-#### [npm](https://npmjs.org/package/pretty-bytes)
-
-```
-npm install --save pretty-bytes
+```bash
+$ npm install --save pretty-bytes
 ```
 
-#### [Bower](http://bower.io)
-
-```
-bower install --save pretty-bytes
+```bash
+$ bower install --save pretty-bytes
 ```
 
-#### [Component](https://github.com/component/component)
-
-```
-component install sindresorhus/pretty-bytes
+```bash
+$ component install sindresorhus/pretty-bytes
 ```
 
 
-## Example
+## Usage
 
 ```js
 prettyBytes(1337);
@@ -48,8 +42,8 @@ prettyBytes(100);
 
 You can also use it as a CLI app by installing it globally:
 
-```
-npm install --global pretty-bytes
+```bash
+$ npm install --global pretty-bytes
 ```
 
 ### Usage
@@ -62,4 +56,4 @@ $ pretty-bytes 1337
 
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+[MIT](http://opensource.org/licenses/MIT) © [Sindre Sorhus](http://sindresorhus.com)
