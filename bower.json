@@ -1,14 +1,15 @@
 {
   "name": "pretty-bytes",
-  "version": "0.1.0",
   "description": "Convert bytes to a human readable string: 1337 → 1.34 kB",
   "license": "MIT",
   "main": "pretty-bytes.js",
-  "authors": [{
-    "name": "Sindre Sorhus",
-    "email": "sindresorhus@gmail.com",
-    "url": "http://sindresorhus.com"
-  }],
+  "authors": [
+    {
+      "name": "Sindre Sorhus",
+      "email": "sindresorhus@gmail.com",
+      "url": "http://sindresorhus.com"
+    }
+  ],
   "keywords": [
     "pretty",
     "bytes",
