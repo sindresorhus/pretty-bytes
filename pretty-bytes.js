@@ -9,7 +9,7 @@
 	'use strict';
 
 	var prettyBytes = function (num) {
-		if (typeof num !== 'number' || Number.isNaN(num)) {
+		if (typeof num !== 'number' || isNaN(num)) {
 			throw new TypeError('Input must be a number');
 		}
 
