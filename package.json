@@ -39,6 +39,9 @@
     "si",
     "data"
   ],
+  "dependencies": {
+    "get-stdin": "^1.0.0"
+  },
   "devDependencies": {
     "mocha": "*"
   }

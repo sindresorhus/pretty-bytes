@@ -38,16 +38,23 @@ prettyBytes(100);
 
 ## CLI
 
-```bash
+```sh
 $ npm install --global pretty-bytes
 ```
 
-```bash
-$ pretty-bytes 1337
-1.34 kB
+```sh
+$ pretty-bytes --help
+
+  Usage
+    pretty-bytes <number>
+    echo <number> | pretty-bytes
+
+  Example
+    pretty-bytes 1337
+    1.34 kB
 ```
 
 
 ## License
 
-[MIT](http://opensource.org/licenses/MIT) © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](http://sindresorhus.com)

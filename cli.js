@@ -1,21 +1,47 @@
 #!/usr/bin/env node
 'use strict';
+var stdin = require('get-stdin');
 var prettyBytes = require('./pretty-bytes');
-var input = process.argv.slice(2);
+var pkg = require('./package.json');
+var argv = process.argv.slice(2);
+var input = argv[0];
 
-if (!input || process.argv.indexOf('-h') !== -1 || process.argv.indexOf('--help') !== -1) {
-	console.log('');
-	console.log('pretty-bytes <number>');
-	console.log('');
-	console.log('Example:');
-	console.log('  $ pretty-bytes 1337');
-	console.log('  1.34 kB');
+function help() {
+	console.log([
+		'',
+		'  ' + pkg.description,
+		'',
+		'  Usage',
+		'    pretty-bytes <number>',
+		'    echo <number> | pretty-bytes',
+		'',
+		'  Example',
+		'    pretty-bytes 1337',
+		'    1.34 kB'
+	].join('\n'));
+}
+
+function init(data) {
+	console.log(prettyBytes(Number(data)));
+}
+
+if (argv.indexOf('--help') !== -1) {
+	help();
 	return;
 }
 
-if (process.argv.indexOf('-v') !== -1 || process.argv.indexOf('--version') !== -1) {
-	console.log(require('./package').version);
+if (argv.indexOf('--version') !== -1) {
+	console.log(pkg.version);
 	return;
 }
 
-console.log(prettyBytes(Number(input)));
+if (process.stdin.isTTY) {
+	if (!input) {
+		help();
+		return;
+	}
+
+	init(input);
+} else {
+	stdin(init);
+}

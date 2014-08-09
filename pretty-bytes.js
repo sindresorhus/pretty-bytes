@@ -15,7 +15,7 @@
 
 	var prettyBytes = function (num) {
 		if (typeof num !== 'number' || isNaN(num)) {
-			throw new TypeError('Input must be a number');
+			throw new TypeError('Expected a number');
 		}
 
 		var exponent;
