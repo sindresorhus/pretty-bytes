@@ -15,7 +15,8 @@ it('should convert bytes to human readable strings', function () {
 	assert.equal(pb(999), '999 B');
 	assert.equal(pb(1001), '1 kB');
 	assert.equal(pb(1001), '1 kB');
-	assert.equal(pb(9999999999999999), '10 PB');
+	assert.equal(pb(1e16), '10 PB');
+	assert.equal(pb(1e30), '1000000 YB');
 });
 
 it('should support negative number', function () {
