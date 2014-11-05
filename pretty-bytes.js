@@ -21,7 +21,7 @@
 		var exponent;
 		var unit;
 		var neg = num < 0;
-		var units = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+		var units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
 		if (neg) {
 			num = -num;
