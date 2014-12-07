@@ -27,8 +27,8 @@
 			num = -num;
 		}
 
-		if (num === 0) {
-			return '0 B';
+		if (num < 1) {
+			return (neg ? '-' : '') + num + ' B';
 		}
 
 		exponent = Math.min(Math.floor(Math.log(num) / Math.log(1000)), units.length - 1);

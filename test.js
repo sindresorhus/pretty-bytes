@@ -11,7 +11,10 @@ it('should throw on invalid input', function () {
 
 it('should convert bytes to human readable strings', function () {
 	assert.equal(pb(0), '0 B');
+	assert.equal(pb(0.4), '0.4 B');
+	assert.equal(pb(0.7), '0.7 B');
 	assert.equal(pb(10), '10 B');
+	assert.equal(pb(10.1), '10.1 B');
 	assert.equal(pb(999), '999 B');
 	assert.equal(pb(1001), '1 kB');
 	assert.equal(pb(1001), '1 kB');
@@ -20,5 +23,9 @@ it('should convert bytes to human readable strings', function () {
 });
 
 it('should support negative number', function () {
+	assert.equal(pb(-0.4), '-0.4 B');
+	assert.equal(pb(-0.7), '-0.7 B');
+	assert.equal(pb(-10.1), '-10.1 B');
 	assert.equal(pb(-999), '-999 B');
+	assert.equal(pb(-1001), '-1 kB');
 });
