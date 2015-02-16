@@ -40,7 +40,7 @@
     "data"
   ],
   "dependencies": {
-    "get-stdin": "^1.0.0"
+    "get-stdin": "^4.0.1"
   },
   "devDependencies": {
     "mocha": "*"
