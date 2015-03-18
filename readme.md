@@ -46,11 +46,11 @@ $ npm install --global pretty-bytes
 $ pretty-bytes --help
 
   Usage
-    pretty-bytes <number>
-    echo <number> | pretty-bytes
+    $ pretty-bytes <number>
+    $ echo <number> | pretty-bytes
 
   Example
-    pretty-bytes 1337
+    $ pretty-bytes 1337
     1.34 kB
 ```
 
