@@ -12,15 +12,15 @@ Useful for displaying file sizes for humans.
 
 ## Install
 
-```sh
+```
 $ npm install --save pretty-bytes
 ```
 
-```sh
+```
 $ bower install --save pretty-bytes
 ```
 
-```sh
+```
 $ component install sindresorhus/pretty-bytes
 ```
 
@@ -38,11 +38,11 @@ prettyBytes(100);
 
 ## CLI
 
-```sh
+```
 $ npm install --global pretty-bytes
 ```
 
-```sh
+```
 $ pretty-bytes --help
 
   Usage
