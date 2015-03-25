@@ -41,6 +41,6 @@
 	if (typeof module !== 'undefined' && module.exports) {
 		module.exports = prettyBytes;
 	} else {
-		window.prettyBytes = prettyBytes;
+		self.prettyBytes = prettyBytes;
 	}
 })();
