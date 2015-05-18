@@ -5,13 +5,11 @@
   "license": "MIT",
   "repository": "sindresorhus/pretty-bytes",
   "main": "pretty-bytes.js",
-  "bin": {
-    "pretty-bytes": "cli.js"
-  },
+  "bin": "cli.js",
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
-    "url": "http://sindresorhus.com"
+    "url": "sindresorhus.com"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -24,6 +22,7 @@
     "cli.js"
   ],
   "keywords": [
+    "cli-app",
     "cli",
     "bin",
     "browser",
