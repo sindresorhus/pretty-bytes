@@ -1,6 +1,6 @@
 'use strict';
 var assert = require('assert');
-var pb = require('./pretty-bytes');
+var pb = require('./');
 
 it('should throw on invalid input', function () {
 	assert.throws(function () { pb('') });

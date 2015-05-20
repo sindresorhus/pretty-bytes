@@ -16,18 +16,12 @@ Useful for displaying file sizes for humans.
 $ npm install --save pretty-bytes
 ```
 
-```
-$ bower install --save pretty-bytes
-```
-
-```
-$ component install sindresorhus/pretty-bytes
-```
-
 
 ## Usage
 
 ```js
+var prettyBytes = require('pretty-bytes');
+
 prettyBytes(1337);
 //=> '1.34 kB'
 

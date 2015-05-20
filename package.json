@@ -4,13 +4,12 @@
   "description": "Convert bytes to a human readable string: 1337 → 1.34 kB",
   "license": "MIT",
   "repository": "sindresorhus/pretty-bytes",
-  "main": "pretty-bytes.js",
-  "bin": "cli.js",
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com"
   },
+  "bin": "cli.js",
   "engines": {
     "node": ">=0.10.0"
   },
@@ -18,14 +17,12 @@
     "test": "mocha"
   },
   "files": [
-    "pretty-bytes.js",
+    "index.js",
     "cli.js"
   ],
   "keywords": [
     "cli-app",
     "cli",
-    "bin",
-    "browser",
     "pretty",
     "bytes",
     "byte",
@@ -40,7 +37,8 @@
   ],
   "dependencies": {
     "get-stdin": "^4.0.1",
-    "meow": "^3.1.0"
+    "meow": "^3.1.0",
+    "number-is-nan": "^1.0.0"
   },
   "devDependencies": {
     "mocha": "*"
