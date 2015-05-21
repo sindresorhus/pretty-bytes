@@ -1,7 +1,8 @@
 'use strict';
 var numberIsNan = require('number-is-nan');
 
-module.exports = function (num) {
+module.exports = function (num, base) {
+	base = base || 1000;
 	if (typeof num !== 'number' || numberIsNan(num)) {
 		throw new TypeError('Expected a number');
 	}
@@ -19,8 +20,8 @@ module.exports = function (num) {
 		return (neg ? '-' : '') + num + ' B';
 	}
 
-	exponent = Math.min(Math.floor(Math.log(num) / Math.log(1000)), units.length - 1);
-	num = (num / Math.pow(1000, exponent)).toFixed(2) * 1;
+	exponent = Math.min(Math.floor(Math.log(num) / Math.log(base)), units.length - 1);
+	num = (num / Math.pow(base, exponent)).toFixed(2) * 1;
 	unit = units[exponent];
 
 	return (neg ? '-' : '') + num + ' ' + unit;

@@ -29,3 +29,9 @@ it('should support negative number', function () {
 	assert.equal(pb(-999), '-999 B');
 	assert.equal(pb(-1001), '-1 kB');
 });
+
+it('should support configurable base', function () {
+	var base = 1024;
+	assert.equal(pb(2048, base), '2 kB');
+	assert.equal(pb(17179900000, base), '16 GB');
+});

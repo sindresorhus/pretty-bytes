@@ -4,11 +4,6 @@
 
 Useful for displaying file sizes for humans.
 
--
-
-*Note that it uses base-10 (eg. kilobyte).  
-[Read about the difference between kilobyte and kibibyte.](http://pacoup.com/2009/05/26/kb-kb-kib-whats-up-with-that/)*
-
 
 ## Install
 
@@ -27,6 +22,10 @@ prettyBytes(1337);
 
 prettyBytes(100);
 //=> '100 B'
+
+var base = 1024;
+prettyBytes(2048, base);
+//=> '2 kB'
 ```
 
 
