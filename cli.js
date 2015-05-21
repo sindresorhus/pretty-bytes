@@ -2,7 +2,7 @@
 'use strict';
 var getStdin = require('get-stdin');
 var meow = require('meow');
-var prettyBytes = require('./pretty-bytes');
+var prettyBytes = require('./');
 
 var cli = meow({
 	help: [
