@@ -13,7 +13,7 @@ var cli = meow({
 		'Example',
 		'  $ pretty-bytes 1337',
 		'  1.34 kB'
-	].join('\n')
+	]
 });
 
 function init(data) {
