@@ -9,20 +9,16 @@
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com"
   },
-  "bin": "cli.js",
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "xo && ava"
   },
   "files": [
-    "index.js",
-    "cli.js"
+    "index.js"
   ],
   "keywords": [
-    "cli-app",
-    "cli",
     "pretty",
     "bytes",
     "byte",
@@ -36,11 +32,10 @@
     "data"
   ],
   "dependencies": {
-    "get-stdin": "^4.0.1",
-    "meow": "^3.3.0",
     "number-is-nan": "^1.0.0"
   },
   "devDependencies": {
-    "mocha": "*"
+    "ava": "*",
+    "xo": "*"
   }
 }

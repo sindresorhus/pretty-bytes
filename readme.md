@@ -20,7 +20,7 @@ $ npm install --save pretty-bytes
 ## Usage
 
 ```js
-var prettyBytes = require('pretty-bytes');
+const prettyBytes = require('pretty-bytes');
 
 prettyBytes(1337);
 //=> '1.34 kB'
@@ -30,23 +30,9 @@ prettyBytes(100);
 ```
 
 
-## CLI
+## Related
 
-```
-$ npm install --global pretty-bytes
-```
-
-```
-$ pretty-bytes --help
-
-  Usage
-    $ pretty-bytes <number>
-    $ echo <number> | pretty-bytes
-
-  Example
-    $ pretty-bytes 1337
-    1.34 kB
-```
+- [pretty-bytes-cli](https://github.com/sindresorhus/pretty-bytes-cli) - CLI for this module
 
 
 ## License
