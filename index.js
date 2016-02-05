@@ -3,7 +3,7 @@ var numberIsNan = require('number-is-nan');
 
 module.exports = function (num) {
 	if (typeof num !== 'number' || numberIsNan(num)) {
-		throw new TypeError('Expected a number');
+		throw new TypeError('Expected a number, found a ' + typeof num + ' instead');
 	}
 
 	var exponent;
