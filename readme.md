@@ -27,6 +27,9 @@ prettyBytes(1337);
 
 prettyBytes(100);
 //=> '100 B'
+
+prettyBytes(1337, {json: true});
+//=> { num: 1.34, unit: 'kB' }
 ```
 
 
