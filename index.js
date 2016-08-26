@@ -1,15 +1,12 @@
 'use strict';
-var numberIsNan = require('number-is-nan');
+const UNITS = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
-module.exports = function (num) {
-	if (typeof num !== 'number' || numberIsNan(num)) {
-		throw new TypeError('Expected a number, got ' + typeof num);
+module.exports = num => {
+	if (typeof num !== 'number' || Number.isNaN(num)) {
+		throw new TypeError(`Expected a number, got ${typeof num}`);
 	}
 
-	var exponent;
-	var unit;
-	var neg = num < 0;
-	var units = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+	const neg = num < 0;
 
 	if (neg) {
 		num = -num;
@@ -19,9 +16,9 @@ module.exports = function (num) {
 		return (neg ? '-' : '') + num + ' B';
 	}
 
-	exponent = Math.min(Math.floor(Math.log(num) / Math.log(1000)), units.length - 1);
-	num = Number((num / Math.pow(1000, exponent)).toPrecision(3));
-	unit = units[exponent];
+	const exponent = Math.min(Math.floor(Math.log(num) / Math.log(1000)), UNITS.length - 1);
+	const numStr = Number((num / Math.pow(1000, exponent)).toPrecision(3));
+	const unit = UNITS[exponent];
 
-	return (neg ? '-' : '') + num + ' ' + unit;
+	return (neg ? '-' : '') + numStr + ' ' + unit;
 };
