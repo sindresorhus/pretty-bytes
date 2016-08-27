@@ -2,8 +2,8 @@
 const UNITS = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
 module.exports = num => {
-	if (typeof num !== 'number' || Number.isNaN(num)) {
-		throw new TypeError(`Expected a number, got ${typeof num}`);
+	if (!Number.isFinite(num)) {
+		throw new TypeError(`Expected a finite number, got ${typeof num}`);
 	}
 
 	const neg = num < 0;

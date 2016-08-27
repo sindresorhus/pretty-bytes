@@ -6,6 +6,9 @@ test('throws on invalid input', t => {
 	t.throws(() => m('1'));
 	t.throws(() => m(NaN));
 	t.throws(() => m(true));
+	t.throws(() => m(Infinity));
+	t.throws(() => m(-Infinity));
+	t.throws(() => m(null));
 });
 
 test('converts bytes to human readable strings', t => {
