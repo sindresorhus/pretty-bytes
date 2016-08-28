@@ -1,9 +1,9 @@
 'use strict';
 const UNITS = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
-module.exports = num => {
+module.exports = function(num) {
 	if (!Number.isFinite(num)) {
-		throw new TypeError(`Expected a finite number, got ${typeof num}`);
+		throw new TypeError('Expected a finite number, got ' + typeof num);
 	}
 
 	const neg = num < 0;
