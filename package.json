@@ -13,7 +13,8 @@
     "node": ">=4"
   },
   "scripts": {
-    "test": "xo && ava"
+    "test": "xo && ava",
+    "prepublish": "babel src/index.js --out-file index.js"
   },
   "files": [
     "index.js"
