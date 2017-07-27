@@ -1,5 +1,5 @@
 import test from 'ava';
-import m from './';
+import m from './src/index';
 
 test('throws on invalid input', t => {
 	t.throws(() => m(''));

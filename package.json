@@ -13,7 +13,8 @@
     "node": ">=4"
   },
   "scripts": {
-    "test": "xo && ava"
+    "test": "xo && ava",
+    "prepublish": "babel src/index.js --out-file index.js"
   },
   "files": [
     "index.js"
@@ -33,6 +34,8 @@
   ],
   "devDependencies": {
     "ava": "*",
+    "babel-cli": "6.24.1",
+    "babel-preset-env": "1.6.0",
     "xo": "*"
   }
 }
