@@ -25,6 +25,9 @@ prettyBytes(1337);
 
 prettyBytes(100);
 //=> '100 B'
+
+prettyBytes.diff(42, 123);
+//=> '+81 B'
 ```
 
 
