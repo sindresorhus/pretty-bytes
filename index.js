@@ -1,7 +1,7 @@
 'use strict';
 const UNITS = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
-module.exports = num => {
+const prettyBytes = num => {
 	if (!Number.isFinite(num)) {
 		throw new TypeError(`Expected a finite number, got ${typeof num}: ${num}`);
 	}
@@ -22,3 +22,22 @@ module.exports = num => {
 
 	return (neg ? '-' : '') + numStr + ' ' + unit;
 };
+
+prettyBytes.diff = (from, to) => {
+	if (!Number.isFinite(from)) {
+		throw new TypeError(`Expected a finite number, got ${typeof from}: ${from}`);
+	}
+	if (!Number.isFinite(to)) {
+		throw new TypeError(`Expected a finite number, got ${typeof to}: ${to}`);
+	}
+
+	if (from === to) {
+		return `±0 B`;
+	}
+
+	const delta = to - from;
+	const prettyDelta = prettyBytes(delta);
+	return (delta < 0) ? prettyDelta : `+${prettyDelta}`;
+};
+
+module.exports = prettyBytes;

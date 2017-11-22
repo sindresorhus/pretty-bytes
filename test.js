@@ -31,3 +31,9 @@ test('supports negative number', t => {
 	t.is(m(-999), '-999 B');
 	t.is(m(-1001), '-1 kB');
 });
+
+test('has diff() method', t => {
+	t.is(m.diff(42, 123), '+81 B');
+	t.is(m.diff(123, 42), '-81 B');
+	t.is(m.diff(42, 42), '±0 B');
+});
