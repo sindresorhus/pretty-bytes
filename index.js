@@ -17,7 +17,7 @@ module.exports = (num, locale = undefined) => {
 	}
 
 	const exponent = Math.min(Math.floor(Math.log10(num) / 3), UNITS.length - 1);
-	const numStr = (num / Math.pow(1000, exponent)).toLocaleString(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+	const numStr = Number(num / Math.pow(1000, exponent)).toLocaleString(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 	const unit = UNITS[exponent];
 
 	return (neg ? '-' : '') + numStr + ' ' + unit;
