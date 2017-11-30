@@ -1,7 +1,7 @@
 'use strict';
 const UNITS = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
-module.exports = (num, locale = undefined) => {
+module.exports = (num, localize = false) => {
 	if (!Number.isFinite(num)) {
 		throw new TypeError(`Expected a finite number, got ${typeof num}: ${num}`);
 	}
@@ -17,7 +17,8 @@ module.exports = (num, locale = undefined) => {
 	}
 
 	const exponent = Math.min(Math.floor(Math.log10(num) / 3), UNITS.length - 1);
-	const numStr = Number(num / Math.pow(1000, exponent)).toLocaleString(locale, {maximumFractionDigits: 2});
+	const numTmp = Number((num / Math.pow(1000, exponent)).toPrecision(3));
+	const numStr = localize ? numTmp.toLocaleString() : numTmp;
 	const unit = UNITS[exponent];
 
 	return (neg ? '-' : '') + numStr + ' ' + unit;
