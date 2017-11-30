@@ -1,7 +1,7 @@
 'use strict';
 const UNITS = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
-module.exports = (num, localize = false) => {
+module.exports = (num, localize) => {
 	if (!Number.isFinite(num)) {
 		throw new TypeError(`Expected a finite number, got ${typeof num}: ${num}`);
 	}
