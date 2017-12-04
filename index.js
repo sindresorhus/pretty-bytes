@@ -21,12 +21,10 @@ module.exports = (num, options) => {
 	const exponent = Math.min(Math.floor(Math.log10(num) / 3), UNITS.length - 1);
 	let numStr = Number((num / Math.pow(1000, exponent)).toPrecision(3));
 
-	if (options.locale) {
-		if (typeof options.locale === 'string') {
-			numStr = numStr.toLocaleString(options.locale);
-		} else if (options.locale) {
-			numStr = numStr.toLocaleString();
-		}
+	if (typeof options.locale === 'string') {
+		numStr = numStr.toLocaleString(options.locale);
+	} else if (options.locale) {
+		numStr = numStr.toLocaleString();
 	}
 
 	const unit = UNITS[exponent];
