@@ -5,7 +5,7 @@ module.exports = (num, options) => {
 	if (!Number.isFinite(num)) {
 		throw new TypeError(`Expected a finite number, got ${typeof num}: ${num}`);
 	}
-	
+
 	options = Object.assign({}, options);
 
 	const neg = num < 0;
