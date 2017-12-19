@@ -35,11 +35,12 @@ module.exports = (num, options) => {
  * If no value for locale is specified, the number is returned unmodified.
  */
 function toLocaleString(num, locale) {
+	let result = num;
 	if (typeof locale === 'string') {
-		return num.toLocaleString(locale);
+		result = num.toLocaleString(locale);
 	} else if (locale) {
-		return num.toLocaleString();
-	} else {
-		return num;
+		result = num.toLocaleString();
 	}
+
+	return result;
 }
