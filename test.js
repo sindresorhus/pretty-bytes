@@ -33,27 +33,33 @@ test('supports negative number', t => {
 });
 
 test('localized output', t => {
-	t.is(m(-0.4, { locale: 'de' }), '-0,4 B');
-	t.is(m(0.4, { locale: 'de' }), '0,4 B');
-	t.is(m(1001, { locale: 'de' }), '1 kB');
-	t.is(m(10.1, { locale: 'de' }), '10,1 B');
-	t.is(m(1e30, { locale: 'de' }), '1.000.000 YB');
-	
-	t.is(m(-0.4, { locale: 'en' }), '-0.4 B');
-	t.is(m(0.4, { locale: 'en' }), '0.4 B');
-	t.is(m(1001, { locale: 'en' }), '1 kB');
-	t.is(m(10.1, { locale: 'en' }), '10.1 B');
-	t.is(m(1e30, { locale: 'en' }), '1,000,000 YB');
-	
-	t.is(m(-0.4, { locale: true }), '-0.4 B');
-	t.is(m(0.4, { locale: true }), '0.4 B');
-	t.is(m(1001, { locale: true }), '1 kB');
-	t.is(m(10.1, { locale: true }), '10.1 B');
-	t.is(m(1e30, { locale: true }), '1,000,000 YB');
-	
-	t.is(m(-0.4, { locale: false }), '-0.4 B');
-	t.is(m(0.4, { locale: false }), '0.4 B');
-	t.is(m(1001, { locale: false }), '1 kB');
-	t.is(m(10.1, { locale: false }), '10.1 B');
-	t.is(m(1e30, { locale: false }), '1000000 YB');
+	t.is(m(-0.4, {locale: 'de'}), '-0,4 B');
+	t.is(m(0.4, {locale: 'de'}), '0,4 B');
+	t.is(m(1001, {locale: 'de'}), '1 kB');
+	t.is(m(10.1, {locale: 'de'}), '10,1 B');
+	t.is(m(1e30, {locale: 'de'}), '1.000.000 YB');
+
+	t.is(m(-0.4, {locale: 'en'}), '-0.4 B');
+	t.is(m(0.4, {locale: 'en'}), '0.4 B');
+	t.is(m(1001, {locale: 'en'}), '1 kB');
+	t.is(m(10.1, {locale: 'en'}), '10.1 B');
+	t.is(m(1e30, {locale: 'en'}), '1,000,000 YB');
+
+	t.is(m(-0.4, {locale: true}), '-0.4 B');
+	t.is(m(0.4, {locale: true}), '0.4 B');
+	t.is(m(1001, {locale: true}), '1 kB');
+	t.is(m(10.1, {locale: true}), '10.1 B');
+	t.is(m(1e30, {locale: true}), '1,000,000 YB');
+
+	t.is(m(-0.4, {locale: false}), '-0.4 B');
+	t.is(m(0.4, {locale: false}), '0.4 B');
+	t.is(m(1001, {locale: false}), '1 kB');
+	t.is(m(10.1, {locale: false}), '10.1 B');
+	t.is(m(1e30, {locale: false}), '1000000 YB');
+
+	t.is(m(-0.4, {locale: undefined}), '-0.4 B');
+	t.is(m(0.4, {locale: undefined}), '0.4 B');
+	t.is(m(1001, {locale: undefined}), '1 kB');
+	t.is(m(10.1, {locale: undefined}), '10.1 B');
+	t.is(m(1e30, {locale: undefined}), '1000000 YB');
 });
