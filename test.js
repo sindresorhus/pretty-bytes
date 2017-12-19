@@ -32,7 +32,7 @@ test('supports negative number', t => {
 	t.is(m(-1001), '-1 kB');
 });
 
-test('localized output'. t => {
+test('localized output', t => {
 	t.is(m(-0.4, { locale: 'de' }), '-0,4 B');
 	t.is(m(0.4, { locale: 'de' }), '0,4 B');
 	t.is(m(1001, { locale: 'de' }), '1 kB');
