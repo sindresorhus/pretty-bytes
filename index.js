@@ -15,19 +15,31 @@ module.exports = (num, options) => {
 	}
 
 	if (num < 1) {
+		num = toLocaleString(num, options.locale);
 		return (neg ? '-' : '') + num + ' B';
 	}
 
 	const exponent = Math.min(Math.floor(Math.log10(num) / 3), UNITS.length - 1);
 	let numStr = Number((num / Math.pow(1000, exponent)).toPrecision(3));
-
-	if (typeof options.locale === 'string') {
-		numStr = numStr.toLocaleString(options.locale);
-	} else if (options.locale) {
-		numStr = numStr.toLocaleString();
-	}
+	numStr = toLocaleString(numStr, options.locale);
 
 	const unit = UNITS[exponent];
 
 	return (neg ? '-' : '') + numStr + ' ' + unit;
 };
+
+/**
+ * Formats the given number using number.toLocaleString(..).
+ * If locale is a string, the value is expected to be a locale-key (e.g. 'de').
+ * If locale is true or 1, the system default locale is used for translation.
+ * If no value for locale is specified, the number is returned unmodified.
+ */
+function toLocaleString(num, locale) {
+	if (typeof locale === 'string') {
+		return num.toLocaleString(locale);
+	} else if (locale) {
+		return num.toLocaleString();
+	} else {
+		return num;
+	}
+}
