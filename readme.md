@@ -25,8 +25,30 @@ prettyBytes(1337);
 
 prettyBytes(100);
 //=> '100 B'
+
+// Localize output using german locale
+prettyBytes(1337, { locale: 'de' });
+//=> '1,34 kB'
 ```
 
+## API
+### prettyBytes(input, [options])
+#### input
+Type: `number`
+
+The number to format.
+
+#### options
+##### locale
+Type: `boolean || string`
+Default: `false` / no localization
+
+- `string`: Expects a [BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag) (e.g. `en`, `de`, ...)
+- `boolean`: If `true`: Localize the output using the system/browser locale.
+
+**Note:** Localization should generally work in browsers. Node-Users have to ensure, there Node version has [full ICU-Support](https://github.com/nodejs/node/wiki/Intl):
+- if your using linux, node should be able to link to the installed system-icu automatically
+- or you install the [full-icu-package](https://github.com/unicode-org/full-icu-npm) and set the environment variable [NODE-ICU-DATA](https://github.com/nodejs/node/wiki/Intl#using-and-customizing-the-small-icu-build) to `node_modules/full-icu`
 
 ## Related
 
