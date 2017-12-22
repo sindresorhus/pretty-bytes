@@ -46,9 +46,7 @@ Default: `false` / no localization
 - `string`: Expects a [BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag) (e.g. `en`, `de`, ...)
 - `boolean`: If `true`: Localize the output using the system/browser locale.
 
-**Note:** Localization should generally work in browsers. Node-Users have to ensure, there Node version has [full ICU-Support](https://github.com/nodejs/node/wiki/Intl):
-- if your using linux, node should be able to link to the installed system-icu automatically
-- or you install the [full-icu-package](https://github.com/unicode-org/full-icu-npm) and set the environment variable [NODE-ICU-DATA](https://github.com/nodejs/node/wiki/Intl#using-and-customizing-the-small-icu-build) to `node_modules/full-icu`
+**Note:** Localization should generally work in browsers. Node.js needs to be [built](https://github.com/nodejs/node/wiki/Intl) with `full-icu` or `system-icu`. Alternatively, the [full-icu](https://github.com/unicode-org/full-icu-npm) module can be used to provide support at runtime.
 
 ## Related
 
