@@ -26,6 +26,10 @@ prettyBytes(1337);
 prettyBytes(100);
 //=> '100 B'
 
+// Display file size differences
+prettyBytes(42, {signed: true});
+//=> '+42 B'
+
 // Localized output using German locale
 prettyBytes(1337, {locale: 'de'});
 //=> '1,34 kB'
@@ -45,6 +49,15 @@ The number to format.
 #### options
 
 Type: `Object`
+
+##### signed
+
+Type: `boolean`<br>
+Default: `false`
+
+If `true`: Include plus sign for positive numbers. If the difference is exactly
+zero a space character will be prepended instead for better alignment.
+
 
 ##### locale
 
