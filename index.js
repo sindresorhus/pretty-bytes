@@ -32,14 +32,14 @@ module.exports = (num, options) => {
 /**
  * Formats the given number using number.toLocaleString(..).
  * If locale is a string, the value is expected to be a locale-key (e.g. 'de').
- * If locale is true or 1, the system default locale is used for translation.
+ * If locale is true, the system default locale is used for translation.
  * If no value for locale is specified, the number is returned unmodified.
  */
 function toLocaleString(num, locale) {
 	let result = num;
 	if (typeof locale === 'string') {
 		result = num.toLocaleString(locale);
-	} else if (locale) {
+	} else if (locale === true) {
 		result = num.toLocaleString();
 	}
 
