@@ -14,15 +14,14 @@ module.exports = (num, options) => {
 		num = -num;
 	}
 
-	let numStr;
 	if (num < 1) {
-		numStr = toLocaleString(num, options.locale);
+		const numStr = toLocaleString(num, options.locale);
 		return (neg ? '-' : '') + numStr + ' B';
 	}
 
 	const exponent = Math.min(Math.floor(Math.log10(num) / 3), UNITS.length - 1);
 	num = Number((num / Math.pow(1000, exponent)).toPrecision(3));
-	numStr = toLocaleString(num, options.locale);
+	const numStr = toLocaleString(num, options.locale);
 
 	const unit = UNITS[exponent];
 
