@@ -1,5 +1,5 @@
 import test from 'ava';
-import m from './';
+import m from '.';
 
 test('throws on invalid input', t => {
 	t.throws(() => m(''));
@@ -32,7 +32,7 @@ test('supports negative number', t => {
 	t.is(m(-1001), '-1 kB');
 });
 
-test('localized output', t => {
+test('locale option', t => {
 	t.is(m(-0.4, {locale: 'de'}), '-0,4 B');
 	t.is(m(0.4, {locale: 'de'}), '0,4 B');
 	t.is(m(1001, {locale: 'de'}), '1 kB');
