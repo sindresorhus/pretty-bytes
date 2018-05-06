@@ -1,4 +1,8 @@
 sudo: false
+before_install:
+  - npm install full-icu
+before_script:
+  - export NODE_ICU_DATA=node_modules/full-icu
 language: node_js
 node_js:
   - '6'
