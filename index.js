@@ -36,7 +36,12 @@ module.exports = (number, options) => {
 
 	options = Object.assign({}, options);
 
+	if (options.signed && number === 0) {
+		return ' 0 B';
+	}
+
 	const isNegative = number < 0;
+	const prefix = isNegative ? '-' : (options.signed ? '+' : '');
 
 	if (isNegative) {
 		number = -number;
@@ -44,7 +49,7 @@ module.exports = (number, options) => {
 
 	if (number < 1) {
 		const numberString = toLocaleString(number, options.locale);
-		return (isNegative ? '-' : '') + numberString + ' B';
+		return prefix + numberString + ' B';
 	}
 
 	const exponent = Math.min(Math.floor(Math.log10(number) / 3), UNITS.length - 1);
@@ -53,5 +58,5 @@ module.exports = (number, options) => {
 
 	const unit = UNITS[exponent];
 
-	return (isNegative ? '-' : '') + numberString + ' ' + unit;
+	return prefix + numberString + ' ' + unit;
 };

@@ -63,3 +63,9 @@ test('locale option', t => {
 	t.is(m(10.1, {locale: undefined}), '10.1 B');
 	t.is(m(1e30, {locale: undefined}), '1000000 YB');
 });
+
+test('signed option', t => {
+	t.is(m(42, {signed: true}), '+42 B');
+	t.is(m(-13, {signed: true}), '-13 B');
+	t.is(m(0, {signed: true}), ' 0 B');
+});
