@@ -55,8 +55,7 @@ Type: `Object`
 Type: `boolean`<br>
 Default: `false`
 
-If `true`: Include plus sign for positive numbers. If the difference is exactly
-zero a space character will be prepended instead for better alignment.
+Include plus sign for positive numbers. If the difference is exactly zero a space character will be prepended instead for better alignment.
 
 
 ##### locale
