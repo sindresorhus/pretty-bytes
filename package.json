@@ -13,10 +13,14 @@
 		"node": ">=6"
 	},
 	"scripts": {
-		"test": "xo && NODE_ICU_DATA=node_modules/full-icu ava"
+		"test": "xo && NODE_ICU_DATA=node_modules/full-icu ava",
+		"prepublishOnly": "microbundle"
 	},
+	"main": "dist/pretty-bytes.js",
+	"umd:main": "dist/pretty-bytes.umd.js",
+	"module": "dist/pretty-bytes.m.js",
 	"files": [
-		"index.js"
+		"dist/*"
 	],
 	"keywords": [
 		"pretty",
@@ -37,6 +41,7 @@
 	"devDependencies": {
 		"ava": "*",
 		"full-icu": "^1.2.1",
+		"microbundle": "^0.4.4",
 		"xo": "*"
 	}
 }
