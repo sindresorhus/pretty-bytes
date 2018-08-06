@@ -10,16 +10,31 @@ Useful for displaying file sizes for humans.
 
 ## Install
 
-```
+```bash
 $ npm install pretty-bytes
 ```
 
+For TypeScript users, you need to install typings as well: 
 
-## Usage
+```bash
+$ npm install --save @types/pretty-bytes
+```
+
+Then you need to import the main function like this:
 
 ```js
 const prettyBytes = require('pretty-bytes');
+```
 
+For TypeScript: 
+
+```ts
+import * as prettyBytes from 'pretty-bytes';
+````
+
+## Usage
+
+```
 prettyBytes(1337);
 //=> '1.34 kB'
 
