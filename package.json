@@ -13,10 +13,11 @@
 		"node": ">=6"
 	},
 	"scripts": {
-		"test": "xo && NODE_ICU_DATA=node_modules/full-icu ava"
+		"test": "xo && NODE_ICU_DATA=node_modules/full-icu ava && tsd"
 	},
 	"files": [
-		"index.js"
+		"index.js",
+		"index.d.ts"
 	],
 	"keywords": [
 		"pretty",
@@ -35,8 +36,9 @@
 		"localized"
 	],
 	"devDependencies": {
-		"ava": "*",
+		"ava": "^1.4.1",
 		"full-icu": "^1.2.1",
-		"xo": "*"
+		"tsd": "^0.7.2",
+		"xo": "^0.24.0"
 	}
 }

@@ -53,6 +53,7 @@ module.exports = (number, options) => {
 	}
 
 	const exponent = Math.min(Math.floor(Math.log10(number) / 3), UNITS.length - 1);
+	// eslint-disable-next-line unicorn/prefer-exponentiation-operator
 	number = Number((number / Math.pow(1000, exponent)).toPrecision(3));
 	const numberString = toLocaleString(number, options.locale);
 
