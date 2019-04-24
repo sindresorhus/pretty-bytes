@@ -38,9 +38,9 @@ prettyBytes(1337, {locale: 'de'});
 
 ## API
 
-### prettyBytes(input, [options])
+### prettyBytes(number, [options])
 
-#### input
+#### number
 
 Type: `number`
 
@@ -48,7 +48,7 @@ The number to format.
 
 #### options
 
-Type: `Object`
+Type: `object`
 
 ##### signed
 
