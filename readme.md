@@ -32,7 +32,7 @@ prettyBytes(42, {signed: true});
 
 // Localized output using German locale
 prettyBytes(1337, {locale: 'de'});
-//=> '1,34 kB'
+//=> '1.34 kB'
 ```
 
 
