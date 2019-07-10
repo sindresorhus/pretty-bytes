@@ -33,6 +33,10 @@ prettyBytes(42, {signed: true});
 // Localized output using German locale
 prettyBytes(1337, {locale: 'de'});
 //=> '1,34 kB'
+
+// Display with units of bits
+prettyBytes(1337, {bits: true});
+// => '1,34 kbit'
 ```
 
 
@@ -57,6 +61,12 @@ Default: `false`
 
 Include plus sign for positive numbers. If the difference is exactly zero a space character will be prepended instead for better alignment.
 
+##### bits
+
+Type: `boolean`<br>
+Default: `false`
+
+Treat input as bits and use proper units respectively.
 
 ##### locale
 
