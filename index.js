@@ -1,6 +1,6 @@
 'use strict';
 
-const UNITS = [
+const BYTE_UNITS = [
 	'B',
 	'kB',
 	'MB',
@@ -10,6 +10,18 @@ const UNITS = [
 	'EB',
 	'ZB',
 	'YB'
+];
+
+const BIT_UNITS = [
+	'b',
+	'kbit',
+	'Mbit',
+	'Gbit',
+	'Tbit',
+	'Pbit',
+	'Ebit',
+	'Zbit',
+	'Ybit'
 ];
 
 /*
@@ -39,6 +51,8 @@ module.exports = (number, options) => {
 	if (options.signed && number === 0) {
 		return ' 0 B';
 	}
+
+	const UNITS = options.bits !== true ? BYTE_UNITS : BIT_UNITS;
 
 	const isNegative = number < 0;
 	const prefix = isNegative ? '-' : (options.signed ? '+' : '');
