@@ -43,6 +43,10 @@ prettyBytes(1337);
 prettyBytes(100);
 //=> '100 B'
 
+// Display with units of bits
+prettyBytes(1337, {bits: true});
+// => '1.34 kbit'
+
 // Display file size differences
 prettyBytes(42, {signed: true});
 //=> '+42 B'
@@ -53,7 +57,7 @@ prettyBytes(1337, {locale: 'de'});
 
 // Display with units of bits
 prettyBytes(1337, {bits: true});
-// => '1,34 kbit'
+// => '1,34 kb'
 ```
 */
 declare function prettyBytes(
