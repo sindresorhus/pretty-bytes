@@ -66,7 +66,7 @@ Include plus sign for positive numbers. If the difference is exactly zero a spac
 Type: `boolean`<br>
 Default: `false`
 
-Treat input as bits and use proper units respectively.
+Treat input as [bits](https://en.wikipedia.org/wiki/Bit) and use proper units respectively.
 
 ##### locale
 

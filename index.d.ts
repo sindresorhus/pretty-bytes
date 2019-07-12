@@ -54,10 +54,6 @@ prettyBytes(42, {signed: true});
 // Localized output using German locale
 prettyBytes(1337, {locale: 'de'});
 //=> '1,34 kB'
-
-// Display with units of bits
-prettyBytes(1337, {bits: true});
-// => '1,34 kb'
 ```
 */
 declare function prettyBytes(
