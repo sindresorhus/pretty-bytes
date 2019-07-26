@@ -28,7 +28,7 @@ prettyBytes(100);
 
 // Display with units of bits
 prettyBytes(1337, {bits: true});
-// => '1.34 kbit'
+//=> '1.34 kbit'
 
 // Display file size differences
 prettyBytes(42, {signed: true});
