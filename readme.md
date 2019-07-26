@@ -66,7 +66,7 @@ Include plus sign for positive numbers. If the difference is exactly zero a spac
 Type: `boolean`<br>
 Default: `false`
 
-Treat input as [bits](https://en.wikipedia.org/wiki/Bit) instead of [bytes](https://en.wikipedia.org/wiki/Byte) and use proper units respectively. This is useful when referring to [bit rate](https://en.wikipedia.org/wiki/Bit_rate).
+Format the number as [bits](https://en.wikipedia.org/wiki/Bit) instead of [bytes](https://en.wikipedia.org/wiki/Byte). This can be useful when, for example, referring to [bit rate](https://en.wikipedia.org/wiki/Bit_rate).
 
 ##### locale
 
