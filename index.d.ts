@@ -17,6 +17,20 @@ declare namespace prettyBytes {
 		@default false
 		*/
 		readonly locale?: boolean | string;
+
+		/**
+		Format the number as [bits](https://en.wikipedia.org/wiki/Bit) instead of [bytes](https://en.wikipedia.org/wiki/Byte). This can be useful when, for example, referring to [bit rate](https://en.wikipedia.org/wiki/Bit_rate).
+		
+		@default false
+		
+		```
+		import prettyBytes = require('pretty-bytes');
+
+		prettyBytes(1337, {bits: true});
+		//=> '1.34 kbit'
+		```
+		*/
+		readonly bits?: boolean;
 	}
 }
 

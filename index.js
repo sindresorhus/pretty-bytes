@@ -1,6 +1,6 @@
 'use strict';
 
-const UNITS = [
+const BYTE_UNITS = [
 	'B',
 	'kB',
 	'MB',
@@ -10,6 +10,18 @@ const UNITS = [
 	'EB',
 	'ZB',
 	'YB'
+];
+
+const BIT_UNITS = [
+	'b',
+	'kbit',
+	'Mbit',
+	'Gbit',
+	'Tbit',
+	'Pbit',
+	'Ebit',
+	'Zbit',
+	'Ybit'
 ];
 
 /*
@@ -34,10 +46,11 @@ module.exports = (number, options) => {
 		throw new TypeError(`Expected a finite number, got ${typeof number}: ${number}`);
 	}
 
-	options = Object.assign({}, options);
+	options = Object.assign({bits: false}, options);
+	const UNITS = options.bits ? BIT_UNITS : BYTE_UNITS;
 
 	if (options.signed && number === 0) {
-		return ' 0 B';
+		return ' 0 ' + UNITS[0];
 	}
 
 	const isNegative = number < 0;
@@ -49,7 +62,7 @@ module.exports = (number, options) => {
 
 	if (number < 1) {
 		const numberString = toLocaleString(number, options.locale);
-		return prefix + numberString + ' B';
+		return prefix + numberString + ' ' + UNITS[0];
 	}
 
 	const exponent = Math.min(Math.floor(Math.log10(number) / 3), UNITS.length - 1);

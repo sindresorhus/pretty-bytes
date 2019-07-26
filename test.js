@@ -69,3 +69,16 @@ test('signed option', t => {
 	t.is(prettyBytes(-13, {signed: true}), '-13 B');
 	t.is(prettyBytes(0, {signed: true}), ' 0 B');
 });
+
+test('bits option', t => {
+	t.is(prettyBytes(0, {bits: true}), '0 b');
+	t.is(prettyBytes(0.4, {bits: true}), '0.4 b');
+	t.is(prettyBytes(0.7, {bits: true}), '0.7 b');
+	t.is(prettyBytes(10, {bits: true}), '10 b');
+	t.is(prettyBytes(10.1, {bits: true}), '10.1 b');
+	t.is(prettyBytes(999, {bits: true}), '999 b');
+	t.is(prettyBytes(1001, {bits: true}), '1 kbit');
+	t.is(prettyBytes(1001, {bits: true}), '1 kbit');
+	t.is(prettyBytes(1e16, {bits: true}), '10 Pbit');
+	t.is(prettyBytes(1e30, {bits: true}), '1000000 Ybit');
+});

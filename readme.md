@@ -26,6 +26,10 @@ prettyBytes(1337);
 prettyBytes(100);
 //=> '100 B'
 
+// Display with units of bits
+prettyBytes(1337, {bits: true});
+//=> '1.34 kbit'
+
 // Display file size differences
 prettyBytes(42, {signed: true});
 //=> '+42 B'
@@ -57,6 +61,12 @@ Default: `false`
 
 Include plus sign for positive numbers. If the difference is exactly zero a space character will be prepended instead for better alignment.
 
+##### bits
+
+Type: `boolean`<br>
+Default: `false`
+
+Format the number as [bits](https://en.wikipedia.org/wiki/Bit) instead of [bytes](https://en.wikipedia.org/wiki/Byte). This can be useful when, for example, referring to [bit rate](https://en.wikipedia.org/wiki/Bit_rate).
 
 ##### locale
 
