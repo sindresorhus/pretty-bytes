@@ -31,6 +31,22 @@ declare namespace prettyBytes {
 		```
 		*/
 		readonly bits?: boolean;
+		
+		/**
+		Format the number using the [Binary Prefix](https://en.wikipedia.org/wiki/Binary_prefix) instead of the [SI Prefix](https://en.wikipedia.org/wiki/SI_Prefix). This can be useful as memory is much better represented by powers of 2.
+		
+		@default false
+		
+		```
+		import prettyBytes = require('pretty-bytes');
+
+		prettyBytes(1000, {binary: true});
+		//=> '1000 bit'
+		prettyBytes(1024, {binary: true});
+		//=> '1 kiB'
+		```
+		*/
+		readonly binary?: boolean;
 	}
 }
 
