@@ -73,6 +73,8 @@ Format the number as [bits](https://en.wikipedia.org/wiki/Bit) instead of [bytes
 Type: `boolean | string`\
 Default: `false` *(No localization)*
 
+**Important:** Only the number and decimal separator are localized. The unit title is not and will not be localized.
+
 - If `true`: Localize the output using the system/browser locale.
 - If `string`: Expects a [BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag) (For example: `en`, `de`, …)
 
