@@ -82,3 +82,15 @@ test('bits option', t => {
 	t.is(prettyBytes(1e16, {bits: true}), '10 Pbit');
 	t.is(prettyBytes(1e30, {bits: true}), '1000000 Ybit');
 });
+
+test('binary option', t => {
+	t.is(prettyBytes(0, {binary: true}), '0 B');
+	t.is(prettyBytes(4, {binary: true}), '4 B');
+	t.is(prettyBytes(10, {binary: true}), '10 B');
+	t.is(prettyBytes(10.1, {binary: true}), '10.1 B');
+	t.is(prettyBytes(999, {binary: true}), '999 B');
+	t.is(prettyBytes(1025, {binary: true}), '1 kB');
+	t.is(prettyBytes(1001, {binary: true}), '1000 B');
+	t.is(prettyBytes(1e16, {binary: true}), '8.88 PB');
+	t.is(prettyBytes(1e30, {binary: true}), '827000 YB');
+});
