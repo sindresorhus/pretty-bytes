@@ -59,7 +59,7 @@ module.exports = (number, options) => {
 	}
 
 	options = Object.assign({bits: false, binary: false}, options);
-	const UNITS = options.bits ? BIT_UNITS : options.binary ? BIBYTE_UNITS : BYTE_UNITS;
+	const UNITS = (options.bits) ? ((options.binary) ? BIBYTE_UNITS : BIT_UNITS) : BYTE_UNITS;
 
 	if (options.signed && number === 0) {
 		return ' 0 ' + UNITS[0];
