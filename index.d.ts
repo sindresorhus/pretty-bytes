@@ -33,7 +33,7 @@ declare namespace prettyBytes {
 		readonly bits?: boolean;
 
 		/**
-		Format the number using the [Binary Prefix](https://en.wikipedia.org/wiki/Binary_prefix) instead of the [SI Prefix](https://en.wikipedia.org/wiki/SI_Prefix). This can be useful as memory is typically represented by powers of 2. On macOS and Linux file sizes are represented by powers of 10, however on Windows they are represented by powers of 2.
+		Format the number using the [Binary Prefix](https://en.wikipedia.org/wiki/Binary_prefix) instead of the [SI Prefix](https://en.wikipedia.org/wiki/SI_Prefix). This can be useful for presenting memory amounts. However, this should not be used for presenting file sizes.
 
 		@default false
 
@@ -42,6 +42,7 @@ declare namespace prettyBytes {
 
 		prettyBytes(1000, {binary: true});
 		//=> '1000 bit'
+
 		prettyBytes(1024, {binary: true});
 		//=> '1 kiB'
 		```
