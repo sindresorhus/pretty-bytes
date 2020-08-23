@@ -77,7 +77,7 @@ module.exports = (number, options) => {
 		return prefix + numberString + ' ' + UNITS[0];
 	}
 
-	const exponent = Math.min(Math.floor(options.binary ? Math.log(number) / Math.log(1024) : Math.log10(number) / 3 ), UNITS.length - 1);
+	const exponent = Math.min(Math.floor(options.binary ? Math.log(number) / Math.log(1024) : Math.log10(number) / 3), UNITS.length - 1);
 	// eslint-disable-next-line unicorn/prefer-exponentiation-operator
 	number = Number((number / Math.pow(options.binary ? 1024 : 1000, exponent)).toPrecision(3));
 	const numberString = toLocaleString(number, options.locale);
