@@ -20,9 +20,9 @@ declare namespace prettyBytes {
 
 		/**
 		Format the number as [bits](https://en.wikipedia.org/wiki/Bit) instead of [bytes](https://en.wikipedia.org/wiki/Byte). This can be useful when, for example, referring to [bit rate](https://en.wikipedia.org/wiki/Bit_rate).
-		
+
 		@default false
-		
+
 		```
 		import prettyBytes = require('pretty-bytes');
 
@@ -31,6 +31,23 @@ declare namespace prettyBytes {
 		```
 		*/
 		readonly bits?: boolean;
+
+		/**
+		Format the number using the [Binary Prefix](https://en.wikipedia.org/wiki/Binary_prefix) instead of the [SI Prefix](https://en.wikipedia.org/wiki/SI_Prefix). This can be useful for presenting memory amounts. However, this should not be used for presenting file sizes.
+
+		@default false
+
+		```
+		import prettyBytes = require('pretty-bytes');
+
+		prettyBytes(1000, {binary: true});
+		//=> '1000 bit'
+
+		prettyBytes(1024, {binary: true});
+		//=> '1 kiB'
+		```
+		*/
+		readonly binary?: boolean;
 	}
 }
 

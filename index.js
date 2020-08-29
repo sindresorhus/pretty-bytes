@@ -12,6 +12,18 @@ const BYTE_UNITS = [
 	'YB'
 ];
 
+const BIBYTE_UNITS = [
+	'B',
+	'kiB',
+	'MiB',
+	'GiB',
+	'TiB',
+	'PiB',
+	'EiB',
+	'ZiB',
+	'YiB'
+];
+
 const BIT_UNITS = [
 	'b',
 	'kbit',
@@ -46,8 +58,8 @@ module.exports = (number, options) => {
 		throw new TypeError(`Expected a finite number, got ${typeof number}: ${number}`);
 	}
 
-	options = Object.assign({bits: false}, options);
-	const UNITS = options.bits ? BIT_UNITS : BYTE_UNITS;
+	options = Object.assign({bits: false, binary: false}, options);
+	const UNITS = options.bits ? (options.binary ? BIBYTE_UNITS : BIT_UNITS) : BYTE_UNITS;
 
 	if (options.signed && number === 0) {
 		return ' 0 ' + UNITS[0];
@@ -65,9 +77,9 @@ module.exports = (number, options) => {
 		return prefix + numberString + ' ' + UNITS[0];
 	}
 
-	const exponent = Math.min(Math.floor(Math.log10(number) / 3), UNITS.length - 1);
+	const exponent = Math.min(Math.floor(options.binary ? Math.log(number) / Math.log(1024) : Math.log10(number) / 3), UNITS.length - 1);
 	// eslint-disable-next-line unicorn/prefer-exponentiation-operator
-	number = Number((number / Math.pow(1000, exponent)).toPrecision(3));
+	number = Number((number / Math.pow(options.binary ? 1024 : 1000, exponent)).toPrecision(3));
 	const numberString = toLocaleString(number, options.locale);
 
 	const unit = UNITS[exponent];
