@@ -1,4 +1,4 @@
-# pretty-bytes [![Build Status](https://travis-ci.org/sindresorhus/pretty-bytes.svg?branch=master)](https://travis-ci.org/sindresorhus/pretty-bytes)
+# pretty-bytes [![Build Status](https://travis-ci.com/sindresorhus/pretty-bytes.svg?branch=master)](https://travis-ci.com/github/sindresorhus/pretty-bytes)
 
 > Convert bytes to a human readable string: `1337` → `1.34 kB`
 
@@ -7,13 +7,11 @@ Useful for displaying file sizes for humans.
 *Note that it uses base-10 (e.g. kilobyte).
 [Read about the difference between kilobyte and kibibyte.](https://web.archive.org/web/20150324153922/https://pacoup.com/2009/05/26/kb-kb-kib-whats-up-with-that/)*
 
-
 ## Install
 
 ```
 $ npm install pretty-bytes
 ```
-
 
 ## Usage
 
@@ -38,7 +36,6 @@ prettyBytes(42, {signed: true});
 prettyBytes(1337, {locale: 'de'});
 //=> '1,34 kB'
 ```
-
 
 ## API
 
@@ -86,7 +83,6 @@ Default: `false` *(No localization)*
 - If `string`: Expects a [BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag) (For example: `en`, `de`, …)
 
 **Note:** Localization should generally work in browsers. Node.js needs to be [built](https://github.com/nodejs/node/wiki/Intl) with `full-icu` or `system-icu`. Alternatively, the [`full-icu`](https://github.com/unicode-org/full-icu-npm) module can be used to provide support at runtime. [Node.js 13](https://nodejs.org/en/blog/release/v13.0.0/) and later ships with ICU by default.
-
 
 ## Related
 

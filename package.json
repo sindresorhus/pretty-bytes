@@ -4,16 +4,17 @@
 	"description": "Convert bytes to a human readable string: 1337 → 1.34 kB",
 	"license": "MIT",
 	"repository": "sindresorhus/pretty-bytes",
+	"funding": "https://github.com/sponsors/sindresorhus",
 	"author": {
 		"name": "Sindre Sorhus",
 		"email": "sindresorhus@gmail.com",
-		"url": "sindresorhus.com"
+		"url": "https://sindresorhus.com"
 	},
 	"engines": {
 		"node": ">=6"
 	},
 	"scripts": {
-		"test": "xo && NODE_ICU_DATA=node_modules/full-icu ava && tsd"
+		"test": "xo && ava && tsd"
 	},
 	"files": [
 		"index.js",
@@ -37,7 +38,6 @@
 	],
 	"devDependencies": {
 		"ava": "^1.4.1",
-		"full-icu": "^1.2.1",
 		"tsd": "^0.7.2",
 		"xo": "^0.24.0"
 	}

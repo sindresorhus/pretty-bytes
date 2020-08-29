@@ -33,35 +33,39 @@ test('supports negative number', t => {
 });
 
 test('locale option', t => {
-	t.is(prettyBytes(-0.4, {locale: 'de'}), '-0,4 B');
-	t.is(prettyBytes(0.4, {locale: 'de'}), '0,4 B');
-	t.is(prettyBytes(1001, {locale: 'de'}), '1 kB');
-	t.is(prettyBytes(10.1, {locale: 'de'}), '10,1 B');
-	t.is(prettyBytes(1e30, {locale: 'de'}), '1.000.000 YB');
+	if (Number(process.version[0]) >= 14) {
+		t.is(prettyBytes(-0.4, {locale: 'de'}), '-0,4 B');
+		t.is(prettyBytes(0.4, {locale: 'de'}), '0,4 B');
+		t.is(prettyBytes(1001, {locale: 'de'}), '1 kB');
+		t.is(prettyBytes(10.1, {locale: 'de'}), '10,1 B');
+		t.is(prettyBytes(1e30, {locale: 'de'}), '1.000.000 YB');
 
-	t.is(prettyBytes(-0.4, {locale: 'en'}), '-0.4 B');
-	t.is(prettyBytes(0.4, {locale: 'en'}), '0.4 B');
-	t.is(prettyBytes(1001, {locale: 'en'}), '1 kB');
-	t.is(prettyBytes(10.1, {locale: 'en'}), '10.1 B');
-	t.is(prettyBytes(1e30, {locale: 'en'}), '1,000,000 YB');
+		t.is(prettyBytes(-0.4, {locale: 'en'}), '-0.4 B');
+		t.is(prettyBytes(0.4, {locale: 'en'}), '0.4 B');
+		t.is(prettyBytes(1001, {locale: 'en'}), '1 kB');
+		t.is(prettyBytes(10.1, {locale: 'en'}), '10.1 B');
+		t.is(prettyBytes(1e30, {locale: 'en'}), '1,000,000 YB');
 
-	t.is(prettyBytes(-0.4, {locale: true}), '-0.4 B');
-	t.is(prettyBytes(0.4, {locale: true}), '0.4 B');
-	t.is(prettyBytes(1001, {locale: true}), '1 kB');
-	t.is(prettyBytes(10.1, {locale: true}), '10.1 B');
-	t.is(prettyBytes(1e30, {locale: true}), '1,000,000 YB');
+		t.is(prettyBytes(-0.4, {locale: true}), '-0.4 B');
+		t.is(prettyBytes(0.4, {locale: true}), '0.4 B');
+		t.is(prettyBytes(1001, {locale: true}), '1 kB');
+		t.is(prettyBytes(10.1, {locale: true}), '10.1 B');
+		t.is(prettyBytes(1e30, {locale: true}), '1,000,000 YB');
 
-	t.is(prettyBytes(-0.4, {locale: false}), '-0.4 B');
-	t.is(prettyBytes(0.4, {locale: false}), '0.4 B');
-	t.is(prettyBytes(1001, {locale: false}), '1 kB');
-	t.is(prettyBytes(10.1, {locale: false}), '10.1 B');
-	t.is(prettyBytes(1e30, {locale: false}), '1000000 YB');
+		t.is(prettyBytes(-0.4, {locale: false}), '-0.4 B');
+		t.is(prettyBytes(0.4, {locale: false}), '0.4 B');
+		t.is(prettyBytes(1001, {locale: false}), '1 kB');
+		t.is(prettyBytes(10.1, {locale: false}), '10.1 B');
+		t.is(prettyBytes(1e30, {locale: false}), '1000000 YB');
 
-	t.is(prettyBytes(-0.4, {locale: undefined}), '-0.4 B');
-	t.is(prettyBytes(0.4, {locale: undefined}), '0.4 B');
-	t.is(prettyBytes(1001, {locale: undefined}), '1 kB');
-	t.is(prettyBytes(10.1, {locale: undefined}), '10.1 B');
-	t.is(prettyBytes(1e30, {locale: undefined}), '1000000 YB');
+		t.is(prettyBytes(-0.4, {locale: undefined}), '-0.4 B');
+		t.is(prettyBytes(0.4, {locale: undefined}), '0.4 B');
+		t.is(prettyBytes(1001, {locale: undefined}), '1 kB');
+		t.is(prettyBytes(10.1, {locale: undefined}), '10.1 B');
+		t.is(prettyBytes(1e30, {locale: undefined}), '1000000 YB');
+	} else {
+		t.pass();
+	}
 });
 
 test('signed option', t => {
