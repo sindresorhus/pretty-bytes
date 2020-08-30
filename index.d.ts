@@ -51,6 +51,23 @@ declare namespace prettyBytes {
 		```
 		*/
 		readonly binary?: boolean;
+
+		/**
+		Number of fraction digits to show when displaying bytes or bits.
+
+		@default undefined
+
+		```
+		import prettyBytes = require('pretty-bytes');
+
+		prettyBytes(1911);
+		// => '1.91 kB'
+
+		prettyBytes(1911, {digits: 1});
+		//=> '1.9 kB'
+		```
+		*/
+		readonly digits?: number;
 	}
 }
 

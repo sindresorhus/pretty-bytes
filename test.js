@@ -113,3 +113,17 @@ test('bits and binary option', t => {
 	t.is(prettyBytes(1025, {bits: true, binary: true}), '1 kibit');
 	t.is(prettyBytes(1e6, {bits: true, binary: true}), '977 kibit');
 });
+
+test('digits option', t => {
+	t.is(prettyBytes(1001), '1 kB');
+	t.is(prettyBytes(1111), '1.11 kB');
+	t.is(prettyBytes(1911), '1.91 kB');
+	t.is(prettyBytes(1900, {digits: 1}), '1.9 kB');
+	t.is(prettyBytes(1911, {digits: 1}), '1.9 kB');
+	t.is(prettyBytes(1111, {digits: 2}), '1.11 kB');
+	t.is(prettyBytes(1019, {digits: 3}), '1.019 kB');
+	t.is(prettyBytes(1001, {digits: 3}), '1.001 kB');
+	t.is(prettyBytes(4001, {digits: 3, binary: true}), '3.907 kB');
+	t.is(prettyBytes(18717, {digits: 2, binary: true}), '18.28 kB');
+	t.is(prettyBytes(18717, {digits: 4, binary: true}), '18.2783 kB');
+});

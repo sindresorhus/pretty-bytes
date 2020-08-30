@@ -72,6 +72,13 @@ Default: `false`
 
 Format the number using the [Binary Prefix](https://en.wikipedia.org/wiki/Binary_prefix) instead of the [SI Prefix](https://en.wikipedia.org/wiki/SI_Prefix). This can be useful for presenting memory amounts. However, this should not be used for presenting file sizes.
 
+##### digits
+
+Type: `number`\
+Default: `undefined`
+
+Number of fraction digits to show when displaying bytes or bits. If locale is not set, the number will be automatically localized using the system default localization.
+
 ##### locale
 
 Type: `boolean | string`\
