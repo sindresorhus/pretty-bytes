@@ -36,6 +36,18 @@ const BIT_UNITS = [
 	'Ybit'
 ];
 
+const BIBIT_UNITS = [
+	'b',
+	'kibit',
+	'Mibit',
+	'Gibit',
+	'Tibit',
+	'Pibit',
+	'Eibit',
+	'Zibit',
+	'Yibit'
+];
+
 /*
 Formats the given number using `Number#toLocaleString`.
 - If locale is a string, the value is expected to be a locale-key (for example: `de`).
@@ -59,7 +71,9 @@ module.exports = (number, options) => {
 	}
 
 	options = Object.assign({bits: false, binary: false}, options);
-	const UNITS = options.bits ? (options.binary ? BIBYTE_UNITS : BIT_UNITS) : BYTE_UNITS;
+	const UNITS = options.bits ?
+		(options.binary ? BIBIT_UNITS : BIT_UNITS) :
+		(options.binary ? BIBYTE_UNITS : BYTE_UNITS);
 
 	if (options.signed && number === 0) {
 		return ' 0 ' + UNITS[0];
