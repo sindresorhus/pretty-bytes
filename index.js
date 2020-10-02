@@ -56,7 +56,7 @@ Formats the given number using `Number#toLocaleString`.
 */
 const toLocaleString = (number, locale) => {
 	let result = number;
-	if (typeof locale === 'string') {
+	if (typeof locale === 'string' || Array.isArray(locale)) {
 		result = number.toLocaleString(locale);
 	} else if (locale === true) {
 		result = number.toLocaleString();
