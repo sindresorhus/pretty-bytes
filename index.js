@@ -66,6 +66,8 @@ const toLocaleString = (number, locale) => {
 };
 
 module.exports = (number, options) => {
+	number = parseInt(number); 
+	
 	if (!Number.isFinite(number)) {
 		throw new TypeError(`Expected a finite number, got ${typeof number}: ${number}`);
 	}
