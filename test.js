@@ -46,6 +46,12 @@ test('locale option', t => {
 		t.is(prettyBytes(10.1, {locale: 'en'}), '10.1 B');
 		t.is(prettyBytes(1e30, {locale: 'en'}), '1,000,000 YB');
 
+		t.is(prettyBytes(-0.4, {locale: ['unknown', 'de', 'en']}), '-0,4 B');
+		t.is(prettyBytes(0.4, {locale: ['unknown', 'de', 'en']}), '0,4 B');
+		t.is(prettyBytes(1001, {locale: ['unknown', 'de', 'en']}), '1 kB');
+		t.is(prettyBytes(10.1, {locale: ['unknown', 'de', 'en']}), '10,1 B');
+		t.is(prettyBytes(1e30, {locale: ['unknown', 'de', 'en']}), '1.000.000 YB');
+
 		t.is(prettyBytes(-0.4, {locale: true}), '-0.4 B');
 		t.is(prettyBytes(0.4, {locale: true}), '0.4 B');
 		t.is(prettyBytes(1001, {locale: true}), '1 kB');
