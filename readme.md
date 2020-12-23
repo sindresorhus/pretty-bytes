@@ -1,4 +1,4 @@
-# pretty-bytes [![Build Status](https://travis-ci.com/sindresorhus/pretty-bytes.svg?branch=master)](https://travis-ci.com/github/sindresorhus/pretty-bytes)
+# pretty-bytes
 
 > Convert bytes to a human readable string: `1337` → `1.34 kB`
 

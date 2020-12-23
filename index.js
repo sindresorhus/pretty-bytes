@@ -71,12 +71,13 @@ module.exports = (number, options) => {
 	}
 
 	options = Object.assign({bits: false, binary: false}, options);
+
 	const UNITS = options.bits ?
 		(options.binary ? BIBIT_UNITS : BIT_UNITS) :
 		(options.binary ? BIBYTE_UNITS : BYTE_UNITS);
 
 	if (options.signed && number === 0) {
-		return ' 0 ' + UNITS[0];
+		return ` 0 ${UNITS[0]}`;
 	}
 
 	const isNegative = number < 0;

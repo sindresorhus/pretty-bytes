@@ -24,6 +24,7 @@ declare namespace prettyBytes {
 
 		@default false
 
+		@example
 		```
 		import prettyBytes = require('pretty-bytes');
 
@@ -38,6 +39,7 @@ declare namespace prettyBytes {
 
 		@default false
 
+		@example
 		```
 		import prettyBytes = require('pretty-bytes');
 
