@@ -20,6 +20,25 @@ declare namespace prettyBytes {
 		readonly locale?: boolean | string | readonly string[];
 
 		/**
+		[NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) international localization options.
+
+		The options `minimumFractionDigits` and `maximumFractionDigits` can be used to control the number of fractional digits displayed.
+
+		@default undefined
+
+		```
+		import prettyBytes = require('pretty-bytes');
+
+		prettyBytes(1900, {localeOptions: {maximumFractionDigits: 1}});
+		//=> '1.9 kB'
+
+		prettyBytes(1900, {localeOptions: {minimumFractionDigits: 3}});
+		//=> '1.900 kB'
+		```
+		*/
+		readonly localeOptions?: object;
+
+		/**
 		Format the number as [bits](https://en.wikipedia.org/wiki/Bit) instead of [bytes](https://en.wikipedia.org/wiki/Byte). This can be useful when, for example, referring to [bit rate](https://en.wikipedia.org/wiki/Bit_rate).
 
 		@default false
@@ -51,23 +70,6 @@ declare namespace prettyBytes {
 		```
 		*/
 		readonly binary?: boolean;
-
-		/**
-		Number of fraction digits to show when displaying bytes or bits.
-
-		@default undefined
-
-		```
-		import prettyBytes = require('pretty-bytes');
-
-		prettyBytes(1911);
-		// => '1.91 kB'
-
-		prettyBytes(1911, {digits: 1});
-		//=> '1.9 kB'
-		```
-		*/
-		readonly digits?: number;
 	}
 }
 

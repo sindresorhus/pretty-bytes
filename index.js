@@ -87,14 +87,10 @@ module.exports = (number, options) => {
 		number = -number;
 	}
 
-	const locale = options.digits && !options.locale ? true : options.locale;
-	const localeOptions = options.digits ? {
-		minimumFactionDigits: options.digits,
-		maximumFractionDigits: options.digits
-	} : undefined;
+	const locale = !options.locale && options.localeOptions ? true : options.locale;
 
 	if (number < 1) {
-		const numberString = toLocaleString(number, locale, localeOptions);
+		const numberString = toLocaleString(number, locale, options.localeOptions);
 		return prefix + numberString + ' ' + UNITS[0];
 	}
 
@@ -102,11 +98,11 @@ module.exports = (number, options) => {
 	// eslint-disable-next-line unicorn/prefer-exponentiation-operator
 	number /= Math.pow(options.binary ? 1024 : 1000, exponent);
 
-	if (!options.digits) {
+	if (!options.localeOptions) {
 		number = number.toPrecision(3);
 	}
 
-	const numberString = toLocaleString(Number(number), locale, localeOptions);
+	const numberString = toLocaleString(Number(number), locale, options.localeOptions);
 
 	const unit = UNITS[exponent];
 

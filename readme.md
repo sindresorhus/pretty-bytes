@@ -72,13 +72,6 @@ Default: `false`
 
 Format the number using the [Binary Prefix](https://en.wikipedia.org/wiki/Binary_prefix) instead of the [SI Prefix](https://en.wikipedia.org/wiki/SI_Prefix). This can be useful for presenting memory amounts. However, this should not be used for presenting file sizes.
 
-##### digits
-
-Type: `number`\
-Default: `undefined`
-
-Number of fraction digits to show when displaying bytes or bits. If locale is not set, the number will be automatically localized using the system default localization.
-
 ##### locale
 
 Type: `boolean | string`\
@@ -91,6 +84,25 @@ Default: `false` *(No localization)*
 - If `string[]`: Expects a list of [BCP 47 language tags](https://en.wikipedia.org/wiki/IETF_language_tag) (For example: `en`, `de`, …)
 
 **Note:** Localization should generally work in browsers. Node.js needs to be [built](https://github.com/nodejs/node/wiki/Intl) with `full-icu` or `system-icu`. Alternatively, the [`full-icu`](https://github.com/unicode-org/full-icu-npm) module can be used to provide support at runtime. [Node.js 13](https://nodejs.org/en/blog/release/v13.0.0/) and later ships with ICU by default.
+
+##### localeOptions
+
+Type: `object`\
+Default: `undefined`
+
+[NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) international localization options. The options `minimumFractionDigits` and `maximumFractionDigits` can be used to control the number of fractional digits displayed.
+
+```js
+const prettyBytes = require('pretty-bytes');
+
+// Show number with at most 1 fractional digit
+prettyBytes(1900, {localeOptions: {maximumFractionDigits: 1}});
+//=> '1.9 kB'
+
+// Show number with at least 3 fractional digits
+prettyBytes(1900, {localeOptions: {minimumFractionDigits: 3}});
+//=> '1.900 kB'
+```
 
 ## Related
 
