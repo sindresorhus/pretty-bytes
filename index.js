@@ -58,7 +58,7 @@ const toLocaleString = (number, locale, options) => {
 	let result = number;
 	if (typeof locale === 'string' || Array.isArray(locale)) {
 		result = number.toLocaleString(locale, options);
-	} else if (locale === true) {
+	} else if (locale === true || options !== undefined) {
 		result = number.toLocaleString(undefined, options);
 	}
 
@@ -70,7 +70,7 @@ module.exports = (number, options) => {
 		throw new TypeError(`Expected a finite number, got ${typeof number}: ${number}`);
 	}
 
-	options = Object.assign({bits: false, binary: false}, options);
+	options = Object.assign({bits: false, binary: false, minimumFractionDigits: undefined, maximumFractionDigits: undefined}, options);
 
 	const UNITS = options.bits ?
 		(options.binary ? BIBIT_UNITS : BIT_UNITS) :
@@ -87,10 +87,18 @@ module.exports = (number, options) => {
 		number = -number;
 	}
 
-	const locale = !options.locale && options.localeOptions ? true : options.locale;
+	let localeOptions;
+
+	if (options.minimumFractionDigits !== undefined) {
+		localeOptions = {minimumFractionDigits: options.minimumFractionDigits};
+	}
+
+	if (options.maximumFractionDigits !== undefined) {
+		localeOptions = Object.assign({maximumFractionDigits: options.maximumFractionDigits}, localeOptions);
+	}
 
 	if (number < 1) {
-		const numberString = toLocaleString(number, locale, options.localeOptions);
+		const numberString = toLocaleString(number, options.locale, localeOptions);
 		return prefix + numberString + ' ' + UNITS[0];
 	}
 
@@ -98,11 +106,11 @@ module.exports = (number, options) => {
 	// eslint-disable-next-line unicorn/prefer-exponentiation-operator
 	number /= Math.pow(options.binary ? 1024 : 1000, exponent);
 
-	if (!options.localeOptions) {
+	if (!localeOptions) {
 		number = number.toPrecision(3);
 	}
 
-	const numberString = toLocaleString(Number(number), locale, options.localeOptions);
+	const numberString = toLocaleString(Number(number), options.locale, localeOptions);
 
 	const unit = UNITS[exponent];
 

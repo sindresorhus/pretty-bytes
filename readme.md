@@ -85,23 +85,34 @@ Default: `false` *(No localization)*
 
 **Note:** Localization should generally work in browsers. Node.js needs to be [built](https://github.com/nodejs/node/wiki/Intl) with `full-icu` or `system-icu`. Alternatively, the [`full-icu`](https://github.com/unicode-org/full-icu-npm) module can be used to provide support at runtime. [Node.js 13](https://nodejs.org/en/blog/release/v13.0.0/) and later ships with ICU by default.
 
-##### localeOptions
+##### minimumFractionDigits
 
-Type: `object`\
+Type: `number`\
 Default: `undefined`
 
-[NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) international localization options. The options `minimumFractionDigits` and `maximumFractionDigits` can be used to control the number of fractional digits displayed.
+The minimum number of fraction digits to display.
+
+```js
+const prettyBytes = require('pretty-bytes');
+
+// Show number with at least 3 fractional digits
+prettyBytes(1900, {minimumFractionDigits: 3});
+//=> '1.900 kB'
+```
+
+##### maximumFractionDigits
+
+Type: `number`\
+Default: `undefined`
+
+The maximum number of fraction digits to display.
 
 ```js
 const prettyBytes = require('pretty-bytes');
 
 // Show number with at most 1 fractional digit
-prettyBytes(1900, {localeOptions: {maximumFractionDigits: 1}});
+prettyBytes(1900, {maximumFractionDigits: 1});
 //=> '1.9 kB'
-
-// Show number with at least 3 fractional digits
-prettyBytes(1900, {localeOptions: {minimumFractionDigits: 3}});
-//=> '1.900 kB'
 ```
 
 ## Related
