@@ -121,7 +121,11 @@ test('fraction digits option', t => {
 	t.is(prettyBytes(1111, {maximumFractionDigits: 2}), '1.11 kB');
 	t.is(prettyBytes(1019, {maximumFractionDigits: 3}), '1.019 kB');
 	t.is(prettyBytes(1001, {maximumFractionDigits: 3}), '1.001 kB');
+	t.is(prettyBytes(1000, {minimumFractionDigits: 1, maximumFractionDigits: 3}), '1.0 kB');
+	t.is(prettyBytes(3942, {minimumFractionDigits: 1, maximumFractionDigits: 2}), '3.94 kB');
 	t.is(prettyBytes(4001, {maximumFractionDigits: 3, binary: true}), '3.907 kiB');
 	t.is(prettyBytes(18717, {maximumFractionDigits: 2, binary: true}), '18.28 kiB');
 	t.is(prettyBytes(18717, {maximumFractionDigits: 4, binary: true}), '18.2783 kiB');
+	t.is(prettyBytes(32768, {minimumFractionDigits: 2, maximumFractionDigits: 3, binary: true}), '32.00 kiB');
+	t.is(prettyBytes(65536, {minimumFractionDigits: 1, maximumFractionDigits: 3, binary: true}), '64.0 kiB');
 });
