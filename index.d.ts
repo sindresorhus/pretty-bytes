@@ -62,6 +62,8 @@ declare namespace prettyBytes {
 
 		prettyBytes(1900, {minimumFractionDigits: 3});
 		//=> '1.900 kB'
+		prettyBytes(1900);
+		//=> '1.9 kB'
 		```
 		*/
 		readonly minimumFractionDigits?: number;
@@ -76,6 +78,8 @@ declare namespace prettyBytes {
 		import prettyBytes = require('pretty-bytes');
 
 		prettyBytes(1900, {maximumFractionDigits: 1});
+		//=> '1.9 kB'
+		prettyBytes(1900);
 		//=> '1.9 kB'
 		```
 		*/
