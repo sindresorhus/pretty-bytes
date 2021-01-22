@@ -90,7 +90,8 @@ Default: `false` *(No localization)*
 Type: `number`\
 Default: `undefined`
 
-The minimum number of fraction digits to display.
+The minimum number of fraction digits to display. If neither `minimumFractionDigits` or `maximumFractionDigits` are set the default behavior is round to 3 significant digits.
+
 
 ```js
 const prettyBytes = require('pretty-bytes');
@@ -98,6 +99,8 @@ const prettyBytes = require('pretty-bytes');
 // Show number with at least 3 fractional digits
 prettyBytes(1900, {minimumFractionDigits: 3});
 //=> '1.900 kB'
+prettyBytes(1900);
+//=> '1.9 kB'
 ```
 
 ##### maximumFractionDigits
@@ -105,14 +108,16 @@ prettyBytes(1900, {minimumFractionDigits: 3});
 Type: `number`\
 Default: `undefined`
 
-The maximum number of fraction digits to display.
+The maximum number of fraction digits to display. If neither `minimumFractionDigits` or `maximumFractionDigits` are set the default behavior is round to 3 significant digits.
 
 ```js
 const prettyBytes = require('pretty-bytes');
 
 // Show number with at most 1 fractional digit
-prettyBytes(1900, {maximumFractionDigits: 1});
+prettyBytes(1920, {maximumFractionDigits: 1});
 //=> '1.9 kB'
+prettyBytes(1920);
+//=> '1.92 kB'
 ```
 
 ## Related
