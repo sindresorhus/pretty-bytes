@@ -53,7 +53,7 @@ declare namespace prettyBytes {
 		readonly binary?: boolean;
 
 		/**
-		The minimum number of fraction digits to display.
+		The minimum number of fraction digits to display. If neither `minimumFractionDigits` or `maximumFractionDigits` are set the default behavior is round to 3 significant digits.
 
 		@default undefined
 
@@ -68,7 +68,7 @@ declare namespace prettyBytes {
 
 
 		/**
-		The maximum number of fraction digits to display.
+		The maximum number of fraction digits to display. If neither `minimumFractionDigits` or `maximumFractionDigits` are set the default behavior is round to 3 significant digits.
 
 		@default undefined
 
