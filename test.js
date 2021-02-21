@@ -114,7 +114,7 @@ test('bits and binary option', t => {
 	t.is(prettyBytes(1e6, {bits: true, binary: true}), '977 kibit');
 });
 
-test('fraction digits option', t => {
+test('fractional digits options', t => {
 	t.is(prettyBytes(1900, {maximumFractionDigits: 1}), '1.9 kB');
 	t.is(prettyBytes(1900, {minimumFractionDigits: 3}), '1.900 kB');
 	t.is(prettyBytes(1911, {maximumFractionDigits: 1}), '1.9 kB');
