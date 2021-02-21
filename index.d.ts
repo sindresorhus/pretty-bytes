@@ -51,6 +51,47 @@ declare namespace prettyBytes {
 		```
 		*/
 		readonly binary?: boolean;
+
+		/**
+		The minimum number of fraction digits to display.
+
+		If neither `minimumFractionDigits` or `maximumFractionDigits` are set, the default behavior is to round to 3 significant digits.
+
+		@default undefined
+
+		```
+		import prettyBytes = require('pretty-bytes');
+
+		// Show the number with at least 3 fractional digits
+		prettyBytes(1900, {minimumFractionDigits: 3});
+		//=> '1.900 kB'
+
+		prettyBytes(1900);
+		//=> '1.9 kB'
+		```
+		*/
+		readonly minimumFractionDigits?: number;
+
+
+		/**
+		The maximum number of fraction digits to display.
+
+		If neither `minimumFractionDigits` or `maximumFractionDigits` are set, the default behavior is to round to 3 significant digits.
+
+		@default undefined
+
+		```
+		import prettyBytes = require('pretty-bytes');
+
+		// Show the number with at most 1 fractional digit
+		prettyBytes(1920, {maximumFractionDigits: 1});
+		//=> '1.9 kB'
+
+		prettyBytes(1920);
+		//=> '1.92 kB'
+		```
+		*/
+		readonly maximumFractionDigits?: number;
 	}
 }
 
