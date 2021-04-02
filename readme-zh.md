@@ -4,7 +4,7 @@
 
 用于显示人类可读的文件大小
 
-*注意，它使用base-10(例如，kilobyte)。[了解kilobyte和kibibyte之间的差异](https://web.archive.org/web/20150324153922/https://pacoup.com/2009/05/26/kb-kb-kib-whats-up-with-that/)
+**注意，它使用base-10(例如，kilobyte)。[了解kilobyte和kibibyte之间的差异](https://web.archive.org/web/20150324153922/https://pacoup.com/2009/05/26/kb-kb-kib-whats-up-with-that/)**
 
 
 
