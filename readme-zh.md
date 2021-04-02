@@ -4,10 +4,7 @@
 
 用于显示人类可读的文件大小
 
-*Note that it uses base-10 (e.g. kilobyte).
-*注意，它使用base-10(例如，kilobyte)。
-
-[了解kilobyte和kibibyte之间的差异](https://web.archive.org/web/20150324153922/https://pacoup.com/2009/05/26/kb-kb-kib-whats-up-with-that/)*
+*注意，它使用base-10(例如，kilobyte)。[了解kilobyte和kibibyte之间的差异](https://web.archive.org/web/20150324153922/https://pacoup.com/2009/05/26/kb-kb-kib-whats-up-with-that/)
 
 
 
@@ -58,7 +55,7 @@ Type: `object`
 
 ##### signed
 
-Type: `boolean`\
+Type: `boolean`
 Default: `false`
 
 正数包含+号，如果差值恰好为零，则将使用空格字符代替，以更好地对齐。
@@ -72,29 +69,29 @@ Default: `false`
 
 ##### binary
 
-Type: `boolean`\
+Type: `boolean`
 Default: `false`
 
-使用[二进制前缀]（https://en.wikipedia.org/wiki/Binary_prefix）而不是[SI前缀]（https://en.wikipedia.org/wiki/SI_prefix）格式化数字。
+使用[二进制前缀](https://en.wikipedia.org/wiki/Binary_prefix)而不是[SI前缀](https://en.wikipedia.org/wiki/SI_prefix)格式化数字。
 这对于显示存储量可能很有用。 但是，不应将其用于显示文件大小。
 
 ##### locale
 
-Type: `boolean | string`\
+Type: `boolean | string`
 Default: `false` *(没有本地化)*
 
 **重要提示：**仅数字和小数点分隔符已本地化。 单元标题不是，也不会本地化。
 
 
 - 如果 `true`: 使用系统/浏览器区域设置本地化输出。
-- 如果 `string`: 需要[BCP 47语言标签]（https://en.wikipedia.org/wiki/IETF_language_tag）（例如：`en`，`de`等）
-- 如果 `string[]`: 需要[BCP 47语言标签]的列表（https://en.wikipedia.org/wiki/IETF_language_tag）（例如："en"，"de"等）
+- 如果 `string`: 需要[BCP 47语言标签](https://en.wikipedia.org/wiki/IETF_language_tag)（例如：`en`，`de`等）
+- 如果 `string[]`: 需要[BCP 47语言标签](https://en.wikipedia.org/wiki/IETF_language_tag)的列表（例如："en"，"de"等）
 
-**注意：**本地化通常应在浏览器中进行。 Node.js需要使用"full-icu"或"system-icu"来构建（https://github.com/nodejs/node/wiki/Intl）.或者，可以使用[`full-icu`]（https://github.com/unicode-org/full-icu-npm）模块在运行时提供支持。 [Node.js 13]（https://nodejs.org/en/blog/release/v13.0.0/）和更高版本默认情况下都附带ICU。
+**注意：**本地化通常应在浏览器中进行。 Node.js需要使用"full-icu"或"system-icu"来[构建](https://github.com/nodejs/node/wiki/Intl).或者，可以使用[`full-icu`](https://github.com/unicode-org/full-icu-npm)模块在运行时提供支持。 [Node.js 13](https://nodejs.org/en/blog/release/v13.0.0/)和更高版本默认情况下都附带ICU。
 
 ##### minimumFractionDigits
 
-Type: `number`\
+Type: `number`
 Default: `undefined`
 
 显示的最小小数位数。
@@ -114,7 +111,7 @@ prettyBytes(1900);
 
 ##### maximumFractionDigits
 
-Type: `number`\
+Type: `number`
 Default: `undefined`
 
 要显示的最大小数位数。
