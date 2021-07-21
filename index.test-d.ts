@@ -1,7 +1,8 @@
 import {expectType} from 'tsd';
-import prettyBytes = require('.');
+import prettyBytes, { Options } from './dist/mjs/index.js';
 
-const options: prettyBytes.Options = {};
+// @ts-ignore
+const options: Options = {};
 
 expectType<string>(prettyBytes(1337));
 expectType<string>(prettyBytes(42, {signed: true}));

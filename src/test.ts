@@ -2,13 +2,13 @@ import test from 'ava';
 import prettyBytes from '.';
 
 test('throws on invalid input', t => {
-	t.throws(() => prettyBytes(''));
-	t.throws(() => prettyBytes('1'));
+	t.throws(() => (prettyBytes as any)(''));
+	t.throws(() => (prettyBytes as any)('1'));
 	t.throws(() => prettyBytes(NaN));
-	t.throws(() => prettyBytes(true));
+	t.throws(() => (prettyBytes as any)(true));
 	t.throws(() => prettyBytes(Infinity));
 	t.throws(() => prettyBytes(-Infinity));
-	t.throws(() => prettyBytes(null));
+	t.throws(() => (prettyBytes as any)(null));
 });
 
 test('converts bytes to human readable strings', t => {

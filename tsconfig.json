@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es2019",
+    "module": "ESNext",
+    "declaration": true,
+		"rootDir": "src",
+		"outDir": "./dist/mjs",
+		"declarationDir": "./dist/mjs",
+    "strict": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+	"include": ["src/**/*"],
+	"exclude": ["dist"]
+}
