@@ -32,7 +32,7 @@ module.exports = (number, options) => {
 	const prefix = number < 0 ? '-' : (options.signed ? '+' : '');
 	number = Math.abs(number);
 
-	let localeOptions = Object.fromEntries(
+	const localeOptions = Object.fromEntries(
 		Object.entries(options)
 		.filter(([k, _]) => k.includes('FractionDigits'))
 	);
