@@ -29,12 +29,8 @@ module.exports = (number, options) => {
 		return ` 0 ${UNITS_FIRSTLETTER[0]}`;
 	}
 
-	const isNegative = number < 0;
-	const prefix = isNegative ? '-' : (options.signed ? '+' : '');
-
-	if (isNegative) {
-		number = -number;
-	}
+	const prefix = number < 0 ? '-' : (options.signed ? '+' : '');
+	number = Math.abs(number);
 
 	let localeOptions = Object.fromEntries(
 		Object.entries(options)
