@@ -9,7 +9,7 @@ Formats the given number using `Number#toLocaleString`.
 const toLocaleString = (number, locale, options) => {
 	if (typeof locale === 'string' || Array.isArray(locale)) {
 		return number.toLocaleString(locale, options);
-	} else if (locale === true || options !== undefined) {
+	} else if (locale === true || Object.keys(options).length) {
 		return number.toLocaleString(undefined, options);
 	}
 
@@ -36,19 +36,10 @@ module.exports = (number, options) => {
 		number = -number;
 	}
 
-	let localeOptions;
-
-	if (options.minimumFractionDigits !== undefined) {
-		localeOptions = {
-			minimumFractionDigits: options.minimumFractionDigits
-		};
-	}
-
-	if (options.maximumFractionDigits !== undefined) {
-		localeOptions = Object.assign({
-			maximumFractionDigits: options.maximumFractionDigits
-		}, localeOptions);
-	}
+	let localeOptions = Object.fromEntries(
+		Object.entries(options)
+		.filter(([k, _]) => k.includes('FractionDigits'))
+	);
 
 	if (number < 1) {
 		const numberString = toLocaleString(number, options.locale, localeOptions);
@@ -62,7 +53,7 @@ module.exports = (number, options) => {
 	// eslint-disable-next-line unicorn/prefer-exponentiation-operator
 	number /= Math.pow(options.binary ? 1024 : 1000, exponent);
 
-	if (!localeOptions) {
+	if (!Object.keys(localeOptions).length) {
 		number = number.toPrecision(3);
 	}
 
