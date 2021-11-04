@@ -19,7 +19,6 @@ test('converts bytes to human readable strings', t => {
 	t.is(prettyBytes(10.1), '10.1 B');
 	t.is(prettyBytes(999), '999 B');
 	t.is(prettyBytes(1001), '1 kB');
-	t.is(prettyBytes(1001), '1 kB');
 	t.is(prettyBytes(1e16), '10 PB');
 	t.is(prettyBytes(1e30), '1000000 YB');
 });
