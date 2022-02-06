@@ -16,7 +16,7 @@ $ npm install pretty-bytes
 ## Usage
 
 ```js
-const prettyBytes = require('pretty-bytes');
+import { prettyBytes } from 'pretty-bytes';
 
 prettyBytes(1337);
 //=> '1.34 kB'
@@ -95,7 +95,7 @@ The minimum number of fraction digits to display.
 If neither `minimumFractionDigits` or `maximumFractionDigits` are set, the default behavior is to round to 3 significant digits.
 
 ```js
-const prettyBytes = require('pretty-bytes');
+import { prettyBytes } from 'pretty-bytes';
 
 // Show the number with at least 3 fractional digits
 prettyBytes(1900, {minimumFractionDigits: 3});
@@ -115,7 +115,7 @@ The maximum number of fraction digits to display.
 If neither `minimumFractionDigits` or `maximumFractionDigits` are set, the default behavior is to round to 3 significant digits.
 
 ```js
-const prettyBytes = require('pretty-bytes');
+import { prettyBytes } from 'pretty-bytes';
 
 // Show the number with at most 1 fractional digit
 prettyBytes(1920, {maximumFractionDigits: 1});
