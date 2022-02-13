@@ -14,7 +14,7 @@
 	"exports": "./index.js",
 	"types": "./index.d.ts",
 	"engines": {
-		"node": ">=12"
+		"node": "^14.13.1 || >=16.0.0"
 	},
 	"scripts": {
 		"test": "xo && ava && tsd"
@@ -42,6 +42,6 @@
 	"devDependencies": {
 		"ava": "^4.0.1",
 		"tsd": "^0.19.1",
-		"xo": "^0.47.0"
+		"xo": "^0.48.0"
 	}
 }

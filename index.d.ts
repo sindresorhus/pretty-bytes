@@ -12,8 +12,6 @@ export interface Options {
 	- If `string`: Expects a [BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag) (For example: `en`, `de`, …)
 	- If `string[]`: Expects a list of [BCP 47 language tags](https://en.wikipedia.org/wiki/IETF_language_tag) (For example: `en`, `de`, …)
 
-	__Note:__ Localization should generally work in browsers. Node.js needs to be [built](https://github.com/nodejs/node/wiki/Intl) with `full-icu` or `system-icu`. Alternatively, the [`full-icu`](https://github.com/unicode-org/full-icu-npm) module can be used to provide support at runtime.
-
 	@default false
 	*/
 	readonly locale?: boolean | string | readonly string[];
@@ -25,7 +23,7 @@ export interface Options {
 
 	@example
 	```
-	import { prettyBytes } from 'pretty-bytes';
+	import prettyBytes from 'pretty-bytes';
 
 	prettyBytes(1337, {bits: true});
 	//=> '1.34 kbit'
@@ -40,7 +38,7 @@ export interface Options {
 
 	@example
 	```
-	import { prettyBytes } from 'pretty-bytes';
+	import prettyBytes from 'pretty-bytes';
 
 	prettyBytes(1000, {binary: true});
 	//=> '1000 bit'
@@ -59,7 +57,7 @@ export interface Options {
 	@default undefined
 
 	```
-	import { prettyBytes } from 'pretty-bytes';
+	import prettyBytes from 'pretty-bytes';
 
 	// Show the number with at least 3 fractional digits
 	prettyBytes(1900, {minimumFractionDigits: 3});
@@ -79,7 +77,7 @@ export interface Options {
 	@default undefined
 
 	```
-	import { prettyBytes } from 'pretty-bytes';
+	import prettyBytes from 'pretty-bytes';
 
 	// Show the number with at most 1 fractional digit
 	prettyBytes(1920, {maximumFractionDigits: 1});
@@ -99,7 +97,7 @@ Convert bytes to a human readable string: `1337` → `1.34 kB`.
 
 @example
 ```
-import { prettyBytes } from 'pretty-bytes';
+import prettyBytes from 'pretty-bytes';
 
 prettyBytes(1337);
 //=> '1.34 kB'
@@ -116,7 +114,7 @@ prettyBytes(1337, {locale: 'de'});
 //=> '1,34 kB'
 ```
 */
-export function prettyBytes(
+export default function prettyBytes(
 	number: number,
 	options?: Options
 ): string;

@@ -63,12 +63,16 @@ const toLocaleString = (number, locale, options) => {
 	return result;
 };
 
-export const prettyBytes = (number, options) => {
+export default function prettyBytes(number, options) {
 	if (!Number.isFinite(number)) {
 		throw new TypeError(`Expected a finite number, got ${typeof number}: ${number}`);
 	}
 
-	options = {bits: false, binary: false, ...options};
+	options = {
+		bits: false,
+		binary: false,
+		...options,
+	};
 
 	const UNITS = options.bits
 		? (options.binary ? BIBIT_UNITS : BIT_UNITS)
@@ -101,8 +105,7 @@ export const prettyBytes = (number, options) => {
 	}
 
 	const exponent = Math.min(Math.floor(options.binary ? Math.log(number) / Math.log(1024) : Math.log10(number) / 3), UNITS.length - 1);
-	// eslint-disable-next-line prefer-exponentiation-operator
-	number /= Math.pow(options.binary ? 1024 : 1000, exponent);
+	number /= (options.binary ? 1024 : 1000) ** exponent;
 
 	if (!localeOptions) {
 		number = number.toPrecision(3);
@@ -113,4 +116,4 @@ export const prettyBytes = (number, options) => {
 	const unit = UNITS[exponent];
 
 	return prefix + numberString + ' ' + unit;
-};
+}

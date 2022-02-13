@@ -1,5 +1,5 @@
 import {expectType} from 'tsd';
-import {prettyBytes} from '.';
+import prettyBytes from './index.js';
 
 expectType<string>(prettyBytes(1337));
 expectType<string>(prettyBytes(42, {signed: true}));

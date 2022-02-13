@@ -9,14 +9,14 @@ Useful for displaying file sizes for humans.
 
 ## Install
 
-```
-$ npm install pretty-bytes
+```sh
+npm install pretty-bytes
 ```
 
 ## Usage
 
 ```js
-import { prettyBytes } from 'pretty-bytes';
+import prettyBytes from 'pretty-bytes';
 
 prettyBytes(1337);
 //=> '1.34 kB'
@@ -83,8 +83,6 @@ Default: `false` *(No localization)*
 - If `string`: Expects a [BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag) (For example: `en`, `de`, …)
 - If `string[]`: Expects a list of [BCP 47 language tags](https://en.wikipedia.org/wiki/IETF_language_tag) (For example: `en`, `de`, …)
 
-**Note:** Localization should generally work in browsers. Node.js needs to be [built](https://github.com/nodejs/node/wiki/Intl) with `full-icu` or `system-icu`. Alternatively, the [`full-icu`](https://github.com/unicode-org/full-icu-npm) module can be used to provide support at runtime. [Node.js 13](https://nodejs.org/en/blog/release/v13.0.0/) and later ships with ICU by default.
-
 ##### minimumFractionDigits
 
 Type: `number`\
@@ -95,7 +93,7 @@ The minimum number of fraction digits to display.
 If neither `minimumFractionDigits` or `maximumFractionDigits` are set, the default behavior is to round to 3 significant digits.
 
 ```js
-import { prettyBytes } from 'pretty-bytes';
+import prettyBytes from 'pretty-bytes';
 
 // Show the number with at least 3 fractional digits
 prettyBytes(1900, {minimumFractionDigits: 3});
@@ -115,7 +113,7 @@ The maximum number of fraction digits to display.
 If neither `minimumFractionDigits` or `maximumFractionDigits` are set, the default behavior is to round to 3 significant digits.
 
 ```js
-import { prettyBytes } from 'pretty-bytes';
+import prettyBytes from 'pretty-bytes';
 
 // Show the number with at most 1 fractional digit
 prettyBytes(1920, {maximumFractionDigits: 1});
