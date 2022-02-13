@@ -1,7 +1,5 @@
 import {expectType} from 'tsd';
-import prettyBytes = require('.');
-
-const options: prettyBytes.Options = {};
+import {prettyBytes} from '.';
 
 expectType<string>(prettyBytes(1337));
 expectType<string>(prettyBytes(42, {signed: true}));

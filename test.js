@@ -1,13 +1,14 @@
+import process from 'node:process';
 import test from 'ava';
-import prettyBytes from '.';
+import {prettyBytes} from './index.js';
 
 test('throws on invalid input', t => {
 	t.throws(() => prettyBytes(''));
 	t.throws(() => prettyBytes('1'));
-	t.throws(() => prettyBytes(NaN));
+	t.throws(() => prettyBytes(Number.NaN));
 	t.throws(() => prettyBytes(true));
-	t.throws(() => prettyBytes(Infinity));
-	t.throws(() => prettyBytes(-Infinity));
+	t.throws(() => prettyBytes(Number.POSITIVE_INFINITY));
+	t.throws(() => prettyBytes(Number.NEGATIVE_INFINITY));
 	t.throws(() => prettyBytes(null));
 });
 
@@ -122,11 +123,11 @@ test('fractional digits options', t => {
 	t.is(prettyBytes(1001, {maximumFractionDigits: 3}), '1.001 kB');
 	t.is(prettyBytes(1000, {minimumFractionDigits: 1, maximumFractionDigits: 3}), '1.0 kB');
 	t.is(prettyBytes(3942, {minimumFractionDigits: 1, maximumFractionDigits: 2}), '3.94 kB');
-	t.is.skip(prettyBytes(59952784, {maximumFractionDigits: 1}), '59.9 MB'); // eslint-disable-line ava/no-skip-assert
-	t.is.skip(prettyBytes(59952784, {minimumFractionDigits: 1, maximumFractionDigits: 1}), '59.9 MB'); // eslint-disable-line ava/no-skip-assert
+	t.is.skip(prettyBytes(59_952_784, {maximumFractionDigits: 1}), '59.9 MB'); // eslint-disable-line ava/no-skip-assert
+	t.is.skip(prettyBytes(59_952_784, {minimumFractionDigits: 1, maximumFractionDigits: 1}), '59.9 MB'); // eslint-disable-line ava/no-skip-assert
 	t.is(prettyBytes(4001, {maximumFractionDigits: 3, binary: true}), '3.907 kiB');
-	t.is(prettyBytes(18717, {maximumFractionDigits: 2, binary: true}), '18.28 kiB');
-	t.is(prettyBytes(18717, {maximumFractionDigits: 4, binary: true}), '18.2783 kiB');
-	t.is(prettyBytes(32768, {minimumFractionDigits: 2, maximumFractionDigits: 3, binary: true}), '32.00 kiB');
-	t.is(prettyBytes(65536, {minimumFractionDigits: 1, maximumFractionDigits: 3, binary: true}), '64.0 kiB');
+	t.is(prettyBytes(18_717, {maximumFractionDigits: 2, binary: true}), '18.28 kiB');
+	t.is(prettyBytes(18_717, {maximumFractionDigits: 4, binary: true}), '18.2783 kiB');
+	t.is(prettyBytes(32_768, {minimumFractionDigits: 2, maximumFractionDigits: 3, binary: true}), '32.00 kiB');
+	t.is(prettyBytes(65_536, {minimumFractionDigits: 1, maximumFractionDigits: 3, binary: true}), '64.0 kiB');
 });

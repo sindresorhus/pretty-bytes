@@ -1,5 +1,3 @@
-'use strict';
-
 const BYTE_UNITS = [
 	'B',
 	'kB',
@@ -9,7 +7,7 @@ const BYTE_UNITS = [
 	'PB',
 	'EB',
 	'ZB',
-	'YB'
+	'YB',
 ];
 
 const BIBYTE_UNITS = [
@@ -21,7 +19,7 @@ const BIBYTE_UNITS = [
 	'PiB',
 	'EiB',
 	'ZiB',
-	'YiB'
+	'YiB',
 ];
 
 const BIT_UNITS = [
@@ -33,7 +31,7 @@ const BIT_UNITS = [
 	'Pbit',
 	'Ebit',
 	'Zbit',
-	'Ybit'
+	'Ybit',
 ];
 
 const BIBIT_UNITS = [
@@ -45,7 +43,7 @@ const BIBIT_UNITS = [
 	'Pibit',
 	'Eibit',
 	'Zibit',
-	'Yibit'
+	'Yibit',
 ];
 
 /*
@@ -65,16 +63,16 @@ const toLocaleString = (number, locale, options) => {
 	return result;
 };
 
-module.exports = (number, options) => {
+export const prettyBytes = (number, options) => {
 	if (!Number.isFinite(number)) {
 		throw new TypeError(`Expected a finite number, got ${typeof number}: ${number}`);
 	}
 
-	options = Object.assign({bits: false, binary: false}, options);
+	options = {bits: false, binary: false, ...options};
 
-	const UNITS = options.bits ?
-		(options.binary ? BIBIT_UNITS : BIT_UNITS) :
-		(options.binary ? BIBYTE_UNITS : BYTE_UNITS);
+	const UNITS = options.bits
+		? (options.binary ? BIBIT_UNITS : BIT_UNITS)
+		: (options.binary ? BIBYTE_UNITS : BYTE_UNITS);
 
 	if (options.signed && number === 0) {
 		return ` 0 ${UNITS[0]}`;
@@ -94,7 +92,7 @@ module.exports = (number, options) => {
 	}
 
 	if (options.maximumFractionDigits !== undefined) {
-		localeOptions = Object.assign({maximumFractionDigits: options.maximumFractionDigits}, localeOptions);
+		localeOptions = {maximumFractionDigits: options.maximumFractionDigits, ...localeOptions};
 	}
 
 	if (number < 1) {
@@ -103,7 +101,7 @@ module.exports = (number, options) => {
 	}
 
 	const exponent = Math.min(Math.floor(options.binary ? Math.log(number) / Math.log(1024) : Math.log10(number) / 3), UNITS.length - 1);
-	// eslint-disable-next-line unicorn/prefer-exponentiation-operator
+	// eslint-disable-next-line prefer-exponentiation-operator
 	number /= Math.pow(options.binary ? 1024 : 1000, exponent);
 
 	if (!localeOptions) {
