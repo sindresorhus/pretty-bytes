@@ -115,7 +115,10 @@ export default function prettyBytes(number, options) {
 
 	const numberString = toLocaleString(Number(number), options.locale, localeOptions);
 
-	const unit = UNITS[exponent];
+	let unit = UNITS[exponent];
+	if (options.uppercaseKilo && exponent === 1) {
+		unit = 'K' + unit.slice(1);
+	}
 
 	return prefix + numberString + separator + unit;
 }
