@@ -143,6 +143,24 @@ prettyBytes(1920);
 //=> '1.92 kB'
 ```
 
+##### uppercaseKilo
+
+Type: `boolean`\
+Default: `false`
+
+Display an uppercase K for units with the "kilo" prefix.
+
+If not set, the default behavior is to display a lowercase "k" for units with the "kilo" prefix.
+
+```js
+import prettyBytes from 'pretty-bytes';
+prettyBytes(1920, {uppercaseK: true});
+//=> '1.9 KB'
+
+prettyBytes(1920);
+//=> '1.92 kB'
+```
+
 ## Related
 
 - [pretty-bytes-cli](https://github.com/sindresorhus/pretty-bytes-cli) - CLI for this module
