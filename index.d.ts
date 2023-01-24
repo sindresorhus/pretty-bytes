@@ -90,6 +90,27 @@ export interface Options {
 	```
 	*/
 	readonly maximumFractionDigits?: number;
+
+	/**
+	The number of spaces to put between the number and unit.
+
+	If it is not set, the default value is to display 1 space between the number and unit.
+
+	 If it is set to a negative number, the number of spaces between the number and unit will be 0.
+
+	@default 1
+
+	@example
+	```
+	import prettyBytes from 'pretty-bytes';
+	prettyBytes(1920, {spaces: 0});
+	//=> '1.9kB'
+
+	prettyBytes(1920);
+	//=> '1.92 kB'
+	```
+	*/
+	readonly spaces?: number;
 }
 
 /**
