@@ -56,6 +56,7 @@ export interface Options {
 
 	@default undefined
 
+	@example
 	```
 	import prettyBytes from 'pretty-bytes';
 
@@ -76,6 +77,7 @@ export interface Options {
 
 	@default undefined
 
+	@example
 	```
 	import prettyBytes from 'pretty-bytes';
 
