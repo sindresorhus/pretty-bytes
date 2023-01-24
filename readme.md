@@ -123,6 +123,26 @@ prettyBytes(1920);
 //=> '1.92 kB'
 ```
 
+##### spaces
+
+Type: `number`\
+Default: `1`
+
+The number of spaces to put between the number and unit.
+
+If it is not set, the default value is to display 1 space between the number and unit.
+
+If it is set to a negative number, the number of spaces between the number and unit will be 0.
+
+```js
+import prettyBytes from 'pretty-bytes';
+prettyBytes(1920, {spaces: 0});
+//=> '1.9kB'
+
+prettyBytes(1920);
+//=> '1.92 kB'
+```
+
 ## Related
 
 - [pretty-bytes-cli](https://github.com/sindresorhus/pretty-bytes-cli) - CLI for this module
