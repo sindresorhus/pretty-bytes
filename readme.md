@@ -136,6 +136,7 @@ If it is set to a negative number, the number of spaces between the number and u
 
 ```js
 import prettyBytes from 'pretty-bytes';
+
 prettyBytes(1920, {spaces: 0});
 //=> '1.9kB'
 
@@ -154,6 +155,7 @@ If not set, the default behavior is to display a lowercase "k" for units with th
 
 ```js
 import prettyBytes from 'pretty-bytes';
+
 prettyBytes(1920, {uppercaseK: true});
 //=> '1.9 KB'
 
