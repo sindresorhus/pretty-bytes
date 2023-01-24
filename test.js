@@ -157,3 +157,14 @@ test('spaces option', t => {
 	t.is(prettyBytes(42, {signed: true, spaces: 0}), '+42B');
 	t.is(prettyBytes(42, {signed: true, spaces: 2}), '+42  B');
 });
+
+test('uppercaseKilo option', t => {
+	t.is(prettyBytes(1001), '1 kB');
+	t.is(prettyBytes(1025, {binary: true}), '1 kiB');
+	t.is(prettyBytes(1001, {bits: true}), '1 kbit');
+	t.is(prettyBytes(1025, {bits: true, binary: true}), '1 kibit');
+	t.is(prettyBytes(1001, {uppercaseKilo: true}), '1 KB');
+	t.is(prettyBytes(1025, {binary: true, uppercaseKilo: true}), '1 KiB');
+	t.is(prettyBytes(1001, {bits: true, uppercaseKilo: true}), '1 Kbit');
+	t.is(prettyBytes(1025, {bits: true, binary: true, uppercaseKilo: true}), '1 Kibit');
+});
