@@ -111,6 +111,25 @@ export interface Options {
 	```
 	*/
 	readonly spaces?: number;
+
+	/**
+	Display an uppercase K for units with the "kilo" prefix.
+
+	If not set, the default behavior is to display a lowercase "k" for units with the "kilo" prefix.
+
+	@default undefined
+
+	@example
+	```
+	import prettyBytes from 'pretty-bytes';
+	prettyBytes(1920, {uppercaseK: true});
+	//=> '1.9 KB'
+
+	prettyBytes(1920);
+	//=> '1.92 kB'
+	```
+	*/
+	readonly uppercaseKilo?: boolean;
 }
 
 /**
