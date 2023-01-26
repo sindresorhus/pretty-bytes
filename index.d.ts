@@ -92,22 +92,22 @@ export interface Options {
 	readonly maximumFractionDigits?: number;
 
 	/**
-	Do not put a space between the number and unit.
+	Put a space between the number and unit.
 
-	@default false
+	@default true
 
 	@example
 	```
 	import prettyBytes from 'pretty-bytes';
 
-	prettyBytes(1920, {noSpace: true});
+	prettyBytes(1920, {space: false});
 	//=> '1.9kB'
 
 	prettyBytes(1920);
 	//=> '1.92 kB'
 	```
 	*/
-	readonly noSpace?: boolean;
+	readonly space?: boolean;
 
 	/**
 	Use [JEDEC units](https://en.wikipedia.org/wiki/JEDEC_memory_standards#Unit_prefixes_for_semiconductor_storage_capacity) when `binary` is set. Only for displaying bytes (`bits` not set).

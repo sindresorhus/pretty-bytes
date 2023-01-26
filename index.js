@@ -96,13 +96,13 @@ export default function prettyBytes(number, options) {
 		bits: false,
 		binary: false,
 		legacyBinaryByteUnits: false,
-		noSpace: false,
+		space: true,
 		...options,
 	};
 
 	const UNITS = determineUnit(options);
 
-	const separator = options.noSpace ? '' : ' ';
+	const separator = options.space ? ' ' : '';
 
 	if (options.signed && number === 0) {
 		return ` 0${separator}${UNITS[0]}`;

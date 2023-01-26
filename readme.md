@@ -123,17 +123,17 @@ prettyBytes(1920);
 //=> '1.92 kB'
 ```
 
-##### noSpace
+##### space
 
-Type: `number`\
-Default: `false`
+Type: `boolean`\
+Default: `true`
 
-Do not put a space between the number and unit.
+Put a space between the number and unit.
 
 ```js
 import prettyBytes from 'pretty-bytes';
 
-prettyBytes(1920, {noSpace: true});
+prettyBytes(1920, {space: false});
 //=> '1.9kB'
 
 prettyBytes(1920);
