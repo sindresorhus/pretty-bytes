@@ -22,6 +22,18 @@ const BIBYTE_UNITS = [
 	'YiB',
 ];
 
+const LEGACY_BIBYTE_UNITS = [
+	'B',
+	'KB',
+	'MB',
+	'GB',
+	'TB',
+	'PB',
+	'EB',
+	'ZB',
+	'YB',
+];
+
 const BIT_UNITS = [
 	'b',
 	'kbit',
@@ -63,6 +75,18 @@ const toLocaleString = (number, locale, options) => {
 	return result;
 };
 
+const determineUnit = options => {
+	if (options.bits) {
+		return options.binary ? BIBIT_UNITS : BIT_UNITS;
+	}
+
+	if (options.binary) {
+		return options.legacyBinaryByteUnits ? LEGACY_BIBYTE_UNITS : BIBYTE_UNITS;
+	}
+
+	return BYTE_UNITS;
+};
+
 export default function prettyBytes(number, options) {
 	if (!Number.isFinite(number)) {
 		throw new TypeError(`Expected a finite number, got ${typeof number}: ${number}`);
@@ -71,14 +95,14 @@ export default function prettyBytes(number, options) {
 	options = {
 		bits: false,
 		binary: false,
+		legacyBinaryByteUnits: false,
+		noSpace: false,
 		...options,
 	};
 
-	const separator = ' '.repeat(options.spaces === undefined ? 1 : Math.max(options.spaces, 0));
+	const UNITS = determineUnit(options);
 
-	const UNITS = options.bits
-		? (options.binary ? BIBIT_UNITS : BIT_UNITS)
-		: (options.binary ? BIBYTE_UNITS : BYTE_UNITS);
+	const separator = options.noSpace ? '' : ' ';
 
 	if (options.signed && number === 0) {
 		return ` 0${separator}${UNITS[0]}`;
@@ -115,10 +139,7 @@ export default function prettyBytes(number, options) {
 
 	const numberString = toLocaleString(Number(number), options.locale, localeOptions);
 
-	let unit = UNITS[exponent];
-	if (options.uppercaseKilo && exponent === 1) {
-		unit = 'K' + unit.slice(1);
-	}
+	const unit = UNITS[exponent];
 
 	return prefix + numberString + separator + unit;
 }

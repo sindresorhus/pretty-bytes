@@ -123,44 +123,38 @@ prettyBytes(1920);
 //=> '1.92 kB'
 ```
 
-##### spaces
+##### noSpace
 
 Type: `number`\
-Default: `1`
+Default: `false`
 
-The number of spaces to put between the number and unit.
-
-If it is not set, the default value is to display 1 space between the number and unit.
-
-If it is set to a negative number, the number of spaces between the number and unit will be 0.
+Do not put a space between the number and unit.
 
 ```js
 import prettyBytes from 'pretty-bytes';
 
-prettyBytes(1920, {spaces: 0});
+prettyBytes(1920, {noSpace: true});
 //=> '1.9kB'
 
 prettyBytes(1920);
 //=> '1.92 kB'
 ```
 
-##### uppercaseKilo
+##### legacyBinaryByteUnits
 
 Type: `boolean`\
 Default: `false`
 
-Display an uppercase K for units with the "kilo" prefix.
-
-If not set, the default behavior is to display a lowercase "k" for units with the "kilo" prefix.
+Use [JEDEC units](https://en.wikipedia.org/wiki/JEDEC_memory_standards#Unit_prefixes_for_semiconductor_storage_capacity) when `binary` is set. Only for displaying bytes (`bits` not set).
 
 ```js
 import prettyBytes from 'pretty-bytes';
 
-prettyBytes(1920, {uppercaseK: true});
-//=> '1.9 KB'
+prettyBytes(1920, {binary: true, legacyBinaryByteUnits: true});
+//=> '1.88 KB'
 
-prettyBytes(1920);
-//=> '1.92 kB'
+prettyBytes(1920, {binary: true});
+//=> '1.88 kiB'
 ```
 
 ## Related

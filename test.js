@@ -147,24 +147,24 @@ test('fractional digits options', t => {
 	t.is(prettyBytes(65_536, {minimumFractionDigits: 1, maximumFractionDigits: 3, binary: true}), '64.0 kiB');
 });
 
-test('spaces option', t => {
+test('noSpace option', t => {
 	t.is(prettyBytes(0), '0 B');
-	t.is(prettyBytes(0, {spaces: 0}), '0B');
-	t.is(prettyBytes(999, {spaces: 0}), '999B');
-	t.is(prettyBytes(999, {spaces: 2}), '999  B');
-	t.is(prettyBytes(-13, {signed: true, spaces: 0}), '-13B');
-	t.is(prettyBytes(-13, {signed: true, spaces: 3}), '-13   B');
-	t.is(prettyBytes(42, {signed: true, spaces: 0}), '+42B');
-	t.is(prettyBytes(42, {signed: true, spaces: 2}), '+42  B');
+	t.is(prettyBytes(0, {noSpace: true}), '0B');
+	t.is(prettyBytes(999), '999 B');
+	t.is(prettyBytes(999, {noSpace: true}), '999B');
+	t.is(prettyBytes(-13, {signed: true}), '-13 B');
+	t.is(prettyBytes(-13, {signed: true, noSpace: true}), '-13B');
+	t.is(prettyBytes(42, {signed: true}), '+42 B');
+	t.is(prettyBytes(42, {signed: true, noSpace: true}), '+42B');
 });
 
-test('uppercaseKilo option', t => {
+test('legacyBinaryByteUnits option', t => {
 	t.is(prettyBytes(1001), '1 kB');
 	t.is(prettyBytes(1025, {binary: true}), '1 kiB');
 	t.is(prettyBytes(1001, {bits: true}), '1 kbit');
 	t.is(prettyBytes(1025, {bits: true, binary: true}), '1 kibit');
-	t.is(prettyBytes(1001, {uppercaseKilo: true}), '1 KB');
-	t.is(prettyBytes(1025, {binary: true, uppercaseKilo: true}), '1 KiB');
-	t.is(prettyBytes(1001, {bits: true, uppercaseKilo: true}), '1 Kbit');
-	t.is(prettyBytes(1025, {bits: true, binary: true, uppercaseKilo: true}), '1 Kibit');
+	t.is(prettyBytes(1001, {legacyBinaryByteUnits: true}), '1 kB');
+	t.is(prettyBytes(1025, {binary: true, legacyBinaryByteUnits: true}), '1 KB');
+	t.is(prettyBytes(1001, {bits: true, legacyBinaryByteUnits: true}), '1 kbit');
+	t.is(prettyBytes(1025, {bits: true, binary: true, legacyBinaryByteUnits: true}), '1 kibit');
 });

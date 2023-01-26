@@ -7,5 +7,5 @@ expectType<string>(prettyBytes(1337, {locale: 'de'}));
 expectType<string>(prettyBytes(1337, {locale: true}));
 expectType<string>(prettyBytes(1337, {bits: true}));
 expectType<string>(prettyBytes(1337, {binary: true}));
-expectType<string>(prettyBytes(1337, {spaces: 0}));
-expectType<string>(prettyBytes(1337, {uppercaseKilo: true}));
+expectType<string>(prettyBytes(1337, {noSpace: true}));
+expectType<string>(prettyBytes(1337, {legacyBinaryByteUnits: true}));
