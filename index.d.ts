@@ -108,24 +108,6 @@ export interface Options {
 	```
 	*/
 	readonly space?: boolean;
-
-	/**
-	Use [JEDEC units](https://en.wikipedia.org/wiki/JEDEC_memory_standards#Unit_prefixes_for_semiconductor_storage_capacity) when `binary` is set. Only for displaying bytes (`bits` not set).
-
-	@default false
-
-	@example
-	```
-	import prettyBytes from 'pretty-bytes';
-
-	prettyBytes(1920, {binary: true, legacyBinaryByteUnits: true});
-	//=> '1.88 KB'
-
-	prettyBytes(1920, {binary: true});
-	//=> '1.88 kiB'
-	```
-	*/
-	readonly legacyBinaryByteUnits?: boolean;
 }
 
 /**

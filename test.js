@@ -157,14 +157,3 @@ test('space option', t => {
 	t.is(prettyBytes(42, {signed: true}), '+42 B');
 	t.is(prettyBytes(42, {signed: true, space: false}), '+42B');
 });
-
-test('legacyBinaryByteUnits option', t => {
-	t.is(prettyBytes(1001), '1 kB');
-	t.is(prettyBytes(1025, {binary: true}), '1 kiB');
-	t.is(prettyBytes(1001, {bits: true}), '1 kbit');
-	t.is(prettyBytes(1025, {bits: true, binary: true}), '1 kibit');
-	t.is(prettyBytes(1001, {legacyBinaryByteUnits: true}), '1 kB');
-	t.is(prettyBytes(1025, {binary: true, legacyBinaryByteUnits: true}), '1 KB');
-	t.is(prettyBytes(1001, {bits: true, legacyBinaryByteUnits: true}), '1 kbit');
-	t.is(prettyBytes(1025, {bits: true, binary: true, legacyBinaryByteUnits: true}), '1 kibit');
-});
