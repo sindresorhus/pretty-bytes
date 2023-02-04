@@ -56,6 +56,7 @@ export interface Options {
 
 	@default undefined
 
+	@example
 	```
 	import prettyBytes from 'pretty-bytes';
 
@@ -76,6 +77,7 @@ export interface Options {
 
 	@default undefined
 
+	@example
 	```
 	import prettyBytes from 'pretty-bytes';
 
@@ -88,6 +90,24 @@ export interface Options {
 	```
 	*/
 	readonly maximumFractionDigits?: number;
+
+	/**
+	Put a space between the number and unit.
+
+	@default true
+
+	@example
+	```
+	import prettyBytes from 'pretty-bytes';
+
+	prettyBytes(1920, {space: false});
+	//=> '1.9kB'
+
+	prettyBytes(1920);
+	//=> '1.92 kB'
+	```
+	*/
+	readonly space?: boolean;
 }
 
 /**

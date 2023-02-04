@@ -123,6 +123,23 @@ prettyBytes(1920);
 //=> '1.92 kB'
 ```
 
+##### space
+
+Type: `boolean`\
+Default: `true`
+
+Put a space between the number and unit.
+
+```js
+import prettyBytes from 'pretty-bytes';
+
+prettyBytes(1920, {space: false});
+//=> '1.9kB'
+
+prettyBytes(1920);
+//=> '1.92 kB'
+```
+
 ## Related
 
 - [pretty-bytes-cli](https://github.com/sindresorhus/pretty-bytes-cli) - CLI for this module

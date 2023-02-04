@@ -146,3 +146,14 @@ test('fractional digits options', t => {
 	t.is(prettyBytes(32_768, {minimumFractionDigits: 2, maximumFractionDigits: 3, binary: true}), '32.00 kiB');
 	t.is(prettyBytes(65_536, {minimumFractionDigits: 1, maximumFractionDigits: 3, binary: true}), '64.0 kiB');
 });
+
+test('space option', t => {
+	t.is(prettyBytes(0), '0 B');
+	t.is(prettyBytes(0, {space: false}), '0B');
+	t.is(prettyBytes(999), '999 B');
+	t.is(prettyBytes(999, {space: false}), '999B');
+	t.is(prettyBytes(-13, {signed: true}), '-13 B');
+	t.is(prettyBytes(-13, {signed: true, space: false}), '-13B');
+	t.is(prettyBytes(42, {signed: true}), '+42 B');
+	t.is(prettyBytes(42, {signed: true, space: false}), '+42B');
+});
