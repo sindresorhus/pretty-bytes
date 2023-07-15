@@ -1,4 +1,4 @@
-export interface Options {
+export type Options = {
 	/**
 	Include plus sign for positive numbers. If the difference is exactly zero a space character will be prepended instead for better alignment.
 
@@ -108,7 +108,7 @@ export interface Options {
 	```
 	*/
 	readonly space?: boolean;
-}
+};
 
 /**
 Convert bytes to a human readable string: `1337` → `1.34 kB`.

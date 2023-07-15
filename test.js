@@ -114,7 +114,7 @@ test('binary option', t => {
 	t.is(prettyBytes(10, {binary: true}), '10 B');
 	t.is(prettyBytes(10.1, {binary: true}), '10.1 B');
 	t.is(prettyBytes(999, {binary: true}), '999 B');
-	t.is(prettyBytes(1025, {binary: true}), '1 kiB');
+	t.is(prettyBytes(1025, {binary: true}), '1 KiB');
 	t.is(prettyBytes(1001, {binary: true}), '1000 B');
 	t.is(prettyBytes(1e16, {binary: true}), '8.88 PiB');
 	t.is(prettyBytes(1e30, {binary: true}), '827000 YiB');
@@ -140,11 +140,11 @@ test('fractional digits options', t => {
 	t.is(prettyBytes(3942, {minimumFractionDigits: 1, maximumFractionDigits: 2}), '3.94 kB');
 	t.is.skip(prettyBytes(59_952_784, {maximumFractionDigits: 1}), '59.9 MB'); // eslint-disable-line ava/no-skip-assert
 	t.is.skip(prettyBytes(59_952_784, {minimumFractionDigits: 1, maximumFractionDigits: 1}), '59.9 MB'); // eslint-disable-line ava/no-skip-assert
-	t.is(prettyBytes(4001, {maximumFractionDigits: 3, binary: true}), '3.907 kiB');
-	t.is(prettyBytes(18_717, {maximumFractionDigits: 2, binary: true}), '18.28 kiB');
-	t.is(prettyBytes(18_717, {maximumFractionDigits: 4, binary: true}), '18.2783 kiB');
-	t.is(prettyBytes(32_768, {minimumFractionDigits: 2, maximumFractionDigits: 3, binary: true}), '32.00 kiB');
-	t.is(prettyBytes(65_536, {minimumFractionDigits: 1, maximumFractionDigits: 3, binary: true}), '64.0 kiB');
+	t.is(prettyBytes(4001, {maximumFractionDigits: 3, binary: true}), '3.907 KiB');
+	t.is(prettyBytes(18_717, {maximumFractionDigits: 2, binary: true}), '18.28 KiB');
+	t.is(prettyBytes(18_717, {maximumFractionDigits: 4, binary: true}), '18.2783 KiB');
+	t.is(prettyBytes(32_768, {minimumFractionDigits: 2, maximumFractionDigits: 3, binary: true}), '32.00 KiB');
+	t.is(prettyBytes(65_536, {minimumFractionDigits: 1, maximumFractionDigits: 3, binary: true}), '64.0 KiB');
 });
 
 test('space option', t => {
