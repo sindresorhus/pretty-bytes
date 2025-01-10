@@ -140,6 +140,12 @@ prettyBytes(1920);
 //=> '1.92 kB'
 ```
 
+## FAQ
+
+### Why kB and not KB?
+
+`k` is the [standardized SI prefix](https://en.wikipedia.org/wiki/Metric_prefix) for kilo.
+
 ## Related
 
 - [pretty-bytes-cli](https://github.com/sindresorhus/pretty-bytes-cli) - CLI for this module
