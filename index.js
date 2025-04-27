@@ -63,8 +63,36 @@ const toLocaleString = (number, locale, options) => {
 	return result;
 };
 
+const log10 = numberOrBigInt => {
+	if (typeof numberOrBigInt === 'number') {
+		return Math.log10(numberOrBigInt);
+	}
+
+	const s = numberOrBigInt.toString(10);
+
+	return s.length + Math.log10('0.' + s.slice(0, 15));
+};
+
+const log = numberOrBigInt => {
+	if (typeof numberOrBigInt === 'number') {
+		return Math.log(numberOrBigInt);
+	}
+
+	return log10(numberOrBigInt) * Math.log(10);
+};
+
+const divide = (numberOrBigInt, divisor) => {
+	if (typeof numberOrBigInt === 'number') {
+		return numberOrBigInt / divisor;
+	}
+
+	const integerPart = numberOrBigInt / BigInt(divisor);
+	const remainder = numberOrBigInt % BigInt(divisor);
+	return Number(integerPart) + (Number(remainder) / divisor);
+};
+
 export default function prettyBytes(number, options) {
-	if (!Number.isFinite(number)) {
+	if (typeof number !== 'bigint' && !Number.isFinite(number)) {
 		throw new TypeError(`Expected a finite number, got ${typeof number}: ${number}`);
 	}
 
@@ -81,7 +109,7 @@ export default function prettyBytes(number, options) {
 
 	const separator = options.space ? ' ' : '';
 
-	if (options.signed && number === 0) {
+	if (options.signed && (typeof number === 'number' ? number === 0 : number === BigInt(0))) {
 		return ` 0${separator}${UNITS[0]}`;
 	}
 
@@ -107,8 +135,8 @@ export default function prettyBytes(number, options) {
 		return prefix + numberString + separator + UNITS[0];
 	}
 
-	const exponent = Math.min(Math.floor(options.binary ? Math.log(number) / Math.log(1024) : Math.log10(number) / 3), UNITS.length - 1);
-	number /= (options.binary ? 1024 : 1000) ** exponent;
+	const exponent = Math.min(Math.floor(options.binary ? log(number) / Math.log(1024) : log10(number) / 3), UNITS.length - 1);
+	number = divide(number, (options.binary ? 1024 : 1000) ** exponent);
 
 	if (!localeOptions) {
 		number = number.toPrecision(3);

@@ -113,7 +113,7 @@ export type Options = {
 /**
 Convert bytes to a human readable string: `1337` → `1.34 kB`.
 
-@param number - The number to format.
+@param number - The number to format or a bigint.
 
 @example
 ```
@@ -135,6 +135,6 @@ prettyBytes(1337, {locale: 'de'});
 ```
 */
 export default function prettyBytes(
-	number: number,
+	number: number | bigint,
 	options?: Options
 ): string;

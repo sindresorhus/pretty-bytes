@@ -43,7 +43,7 @@ prettyBytes(1337, {locale: 'de'});
 
 #### number
 
-Type: `number`
+Type: `number | bigint`
 
 The number to format.
 
