@@ -68,9 +68,9 @@ const log10 = numberOrBigInt => {
 		return Math.log10(numberOrBigInt);
 	}
 
-	const s = numberOrBigInt.toString(10);
+	const string = numberOrBigInt.toString(10);
 
-	return s.length + Math.log10('0.' + s.slice(0, 15));
+	return string.length + Math.log10('0.' + string.slice(0, 15));
 };
 
 const log = numberOrBigInt => {
@@ -109,7 +109,7 @@ export default function prettyBytes(number, options) {
 
 	const separator = options.space ? ' ' : '';
 
-	if (options.signed && (typeof number === 'number' ? number === 0 : number === BigInt(0))) {
+	if (options.signed && (typeof number === 'number' ? number === 0 : number === 0n)) {
 		return ` 0${separator}${UNITS[0]}`;
 	}
 
