@@ -135,6 +135,6 @@ prettyBytes(1337, {locale: 'de'});
 ```
 */
 export default function prettyBytes(
-	number: number,
+	number: number | bigint,
 	options?: Options
 ): string;
