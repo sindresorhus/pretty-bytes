@@ -113,7 +113,7 @@ export type Options = {
 /**
 Convert bytes to a human readable string: `1337` → `1.34 kB`.
 
-@param number - The number to format or a bigint.
+@param number - The number to format.
 
 @example
 ```
