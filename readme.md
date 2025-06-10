@@ -45,6 +45,26 @@ prettyBytes(1337, {locale: 'de'});
 
 Type: `number | bigint`
 
+### TypeScript Usage
+
+```ts
+import prettyBytes from 'pretty-bytes';
+
+// Basic usage with TypeScript
+prettyBytes(1337);
+
+// With options
+prettyBytes(1337, {
+  binary: true,
+  bits: false,
+  signed: true,
+  locale: 'en-US'
+});
+
+// With BigInt
+prettyBytes(BigInt(9_007_199_254_740_991));
+```
+
 The number to format.
 
 #### options
