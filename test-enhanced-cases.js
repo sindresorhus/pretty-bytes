@@ -8,7 +8,7 @@ test('unit transition boundaries are handled correctly', t => {
 	t.is(prettyBytes(1000), '1 kB');
 	t.is(prettyBytes(1001), '1 kB');
 
-	// kB to MB transition
+	// KB to MB transition
 	t.is(prettyBytes(999_999), '1000 kB');
 	t.is(prettyBytes(1_000_000), '1 MB');
 	t.is(prettyBytes(1_000_001), '1 MB');
@@ -33,7 +33,7 @@ test('unit transition boundaries are handled correctly', t => {
 test('very small numbers are handled correctly', t => {
 	t.is(prettyBytes(0.001), '0.001 B');
 	t.is(prettyBytes(0.0001), '0.0001 B');
-	t.is(prettyBytes(0.00001), '0.00001 B');
+	t.is(prettyBytes(0.000_01), '0.00001 B');
 	t.is(prettyBytes(0.5), '0.5 B');
 
 	// Negative small numbers
@@ -56,14 +56,14 @@ test('very large numbers are handled correctly', t => {
 
 	// Negative extremely large value
 	const negativeExtremelyLarge = -(10n ** 33n);
-	t.is(prettyBytes(negativeExtremelyLarge), '-1000000 YB');
+	t.is(prettyBytes(negativeExtremelyLarge), '-1000000000 YB');
 });
 
 // Testing all unit progressions
 test('all unit progressions are displayed correctly', t => {
 	// Test each unit transition for standard representation
 	t.is(prettyBytes(1), '1 B');
-	t.is(prettyBytes(1_000), '1 kB');
+	t.is(prettyBytes(1000), '1 kB');
 	t.is(prettyBytes(1_000_000), '1 MB');
 	t.is(prettyBytes(1_000_000_000), '1 GB');
 	t.is(prettyBytes(1_000_000_000_000), '1 TB');
@@ -145,6 +145,6 @@ test('special zeros and number representations', t => {
 	t.is(prettyBytes(0n, {signed: true}), ' 0 B');
 
 	// Value that would display as 0 in some number formats
-	t.is(prettyBytes(0.00000000001), '1e-11 B');
+	t.is(prettyBytes(0.000_000_000_01), '1e-11 B');
 	t.is(prettyBytes(Number.MIN_VALUE), Number.MIN_VALUE + ' B');
 });
