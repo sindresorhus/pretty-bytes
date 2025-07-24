@@ -139,7 +139,8 @@ export default function prettyBytes(number, options) {
 	number = divide(number, (options.binary ? 1024 : 1000) ** exponent);
 
 	if (!localeOptions) {
-		number = number.toPrecision(3);
+		const minPrecision = Math.max(3, Number.parseInt(number, 10).toString().length);
+		number = number.toPrecision(minPrecision);
 	}
 
 	const numberString = toLocaleString(Number(number), options.locale, localeOptions);
