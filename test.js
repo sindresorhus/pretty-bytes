@@ -148,12 +148,12 @@ test('binary option', t => {
 	t.is(prettyBytes(999n, {binary: true}), '999 B');
 	t.is(prettyBytes(1025, {binary: true}), '1 KiB');
 	t.is(prettyBytes(1025n, {binary: true}), '1 KiB');
-	t.is(prettyBytes(1001, {binary: true}), '1000 B');
-	t.is(prettyBytes(1001n, {binary: true}), '1000 B');
+	t.is(prettyBytes(1001, {binary: true}), '1001 B');
+	t.is(prettyBytes(1001n, {binary: true}), '1001 B');
 	t.is(prettyBytes(1e16, {binary: true}), '8.88 PiB');
 	t.is(prettyBytes(10n ** 16n, {binary: true}), '8.88 PiB');
-	t.is(prettyBytes(1e30, {binary: true}), '827000 YiB');
-	t.is(prettyBytes(10n ** 30n, {binary: true}), '827000 YiB');
+	t.is(prettyBytes(1e30, {binary: true}), '827181 YiB');
+	t.is(prettyBytes(10n ** 30n, {binary: true}), '827181 YiB');
 });
 
 test('bits and binary option', t => {
