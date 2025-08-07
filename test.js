@@ -47,7 +47,7 @@ test('converts bytes to human readable strings', t => {
 	t.is(prettyBytes(10n ** 16n), '10 PB');
 	t.is(prettyBytes(1e30), '1000000 YB');
 	t.is(prettyBytes(10n ** 30n), '1000000 YB');
-	t.is(prettyBytes(827181 * 10e25), '82718100 YB');
+	t.is(prettyBytes(827_181 * 1e26), '82718100 YB');
 });
 
 test('supports negative number', t => {
@@ -68,7 +68,7 @@ test('locale option', t => {
 	t.is(prettyBytes(10.1, {locale: 'de'}), '10,1 B');
 	t.is(prettyBytes(1e30, {locale: 'de'}), '1.000.000 YB');
 	t.is(prettyBytes(10n ** 30n, {locale: 'de'}), '1.000.000 YB');
-	t.is(prettyBytes(827181 * 10e25, {locale: 'de'}), '82.718.100 YB');
+	t.is(prettyBytes(827_181 * 1e26, {locale: 'de'}), '82.718.100 YB');
 
 	t.is(prettyBytes(-0.4, {locale: 'en'}), '-0.4 B');
 	t.is(prettyBytes(0.4, {locale: 'en'}), '0.4 B');
@@ -77,7 +77,7 @@ test('locale option', t => {
 	t.is(prettyBytes(10.1, {locale: 'en'}), '10.1 B');
 	t.is(prettyBytes(1e30, {locale: 'en'}), '1,000,000 YB');
 	t.is(prettyBytes(10n ** 30n, {locale: 'en'}), '1,000,000 YB');
-	t.is(prettyBytes(827181 * 10e25, {locale: 'en'}), '82,718,100 YB');
+	t.is(prettyBytes(827_181 * 1e26, {locale: 'en'}), '82,718,100 YB');
 
 	t.is(prettyBytes(-0.4, {locale: ['unknown', 'de', 'en']}), '-0,4 B');
 	t.is(prettyBytes(0.4, {locale: ['unknown', 'de', 'en']}), '0,4 B');
@@ -86,7 +86,7 @@ test('locale option', t => {
 	t.is(prettyBytes(10.1, {locale: ['unknown', 'de', 'en']}), '10,1 B');
 	t.is(prettyBytes(1e30, {locale: ['unknown', 'de', 'en']}), '1.000.000 YB');
 	t.is(prettyBytes(10n ** 30n, {locale: ['unknown', 'de', 'en']}), '1.000.000 YB');
-	t.is(prettyBytes(827181 * 10e25, {locale: ['unknown', 'de', 'en']}), '82.718.100 YB');
+	t.is(prettyBytes(827_181 * 1e26, {locale: ['unknown', 'de', 'en']}), '82.718.100 YB');
 
 	t.is(prettyBytes(-0.4, {locale: true}), '-0.4 B');
 	t.is(prettyBytes(0.4, {locale: true}), '0.4 B');
@@ -95,7 +95,7 @@ test('locale option', t => {
 	t.is(prettyBytes(10.1, {locale: true}), '10.1 B');
 	t.is(prettyBytes(1e30, {locale: true}), '1,000,000 YB');
 	t.is(prettyBytes(10n ** 30n, {locale: true}), '1,000,000 YB');
-	t.is(prettyBytes(827181 * 10e25, {locale: true}), '82,718,100 YB');
+	t.is(prettyBytes(827_181 * 1e26, {locale: true}), '82,718,100 YB');
 
 	t.is(prettyBytes(-0.4, {locale: false}), '-0.4 B');
 	t.is(prettyBytes(0.4, {locale: false}), '0.4 B');
@@ -104,7 +104,7 @@ test('locale option', t => {
 	t.is(prettyBytes(10.1, {locale: false}), '10.1 B');
 	t.is(prettyBytes(1e30, {locale: false}), '1000000 YB');
 	t.is(prettyBytes(10n ** 30n, {locale: false}), '1000000 YB');
-	t.is(prettyBytes(827181 * 10e25, {locale: false}), '82718100 YB');
+	t.is(prettyBytes(827_181 * 1e26, {locale: false}), '82718100 YB');
 
 	t.is(prettyBytes(-0.4, {locale: undefined}), '-0.4 B');
 	t.is(prettyBytes(0.4, {locale: undefined}), '0.4 B');
@@ -113,7 +113,7 @@ test('locale option', t => {
 	t.is(prettyBytes(10.1, {locale: undefined}), '10.1 B');
 	t.is(prettyBytes(1e30, {locale: undefined}), '1000000 YB');
 	t.is(prettyBytes(10n ** 30n, {locale: undefined}), '1000000 YB');
-	t.is(prettyBytes(827181 * 10e25, {locale: undefined}), '82718100 YB');
+	t.is(prettyBytes(827_181 * 1e26, {locale: undefined}), '82718100 YB');
 });
 
 test('signed option', t => {
@@ -141,7 +141,7 @@ test('bits option', t => {
 	t.is(prettyBytes(10n ** 16n, {bits: true}), '10 Pbit');
 	t.is(prettyBytes(1e30, {bits: true}), '1000000 Ybit');
 	t.is(prettyBytes(10n ** 30n, {bits: true}), '1000000 Ybit');
-	t.is(prettyBytes(827181 * 10e25, {bits: true}), '82718100 Ybit');
+	t.is(prettyBytes(827_181 * 1e26, {bits: true}), '82718100 Ybit');
 });
 
 test('binary option', t => {
@@ -177,8 +177,8 @@ test('bits and binary option', t => {
 	t.is(prettyBytes(1025n, {bits: true, binary: true}), '1 kibit');
 	t.is(prettyBytes(1e6, {bits: true, binary: true}), '977 kibit');
 	t.is(prettyBytes(10n ** 6n, {bits: true, binary: true}), '977 kibit');
-	t.is(prettyBytes(1e30, {bits: true, binary: true}), '827181 YiB');
-	t.is(prettyBytes(10n ** 30n, {bits: true, binary: true}), '827181 YiB');
+	t.is(prettyBytes(1e30, {bits: true, binary: true}), '827181 Yibit');
+	t.is(prettyBytes(10n ** 30n, {bits: true, binary: true}), '827181 Yibit');
 });
 
 test('fractional digits options', t => {
