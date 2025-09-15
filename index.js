@@ -100,6 +100,7 @@ export default function prettyBytes(number, options) {
 		bits: false,
 		binary: false,
 		space: true,
+		nonBreakingSpace: false,
 		...options,
 	};
 
@@ -107,7 +108,7 @@ export default function prettyBytes(number, options) {
 		? (options.binary ? BIBIT_UNITS : BIT_UNITS)
 		: (options.binary ? BIBYTE_UNITS : BYTE_UNITS);
 
-	const separator = options.space ? ' ' : '';
+	const separator = options.space ? (options.nonBreakingSpace ? '\u00A0' : ' ') : '';
 
 	if (options.signed && (typeof number === 'number' ? number === 0 : number === 0n)) {
 		return ` 0${separator}${UNITS[0]}`;

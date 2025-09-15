@@ -108,6 +108,15 @@ export type Options = {
 	```
 	*/
 	readonly space?: boolean;
+
+	/**
+	Use a non-breaking space instead of a regular space to prevent the unit from wrapping to a new line.
+
+	Has no effect when `space` is `false`.
+
+	@default false
+	*/
+	readonly nonBreakingSpace?: boolean;
 };
 
 /**

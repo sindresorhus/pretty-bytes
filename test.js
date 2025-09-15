@@ -230,3 +230,17 @@ test('space option', t => {
 	t.is(prettyBytes(42, {signed: true, space: false}), '+42B');
 	t.is(prettyBytes(42n, {signed: true, space: false}), '+42B');
 });
+
+test('nonBreakingSpace option', t => {
+	// Basic non-breaking space functionality
+	t.is(prettyBytes(1337, {nonBreakingSpace: true}), '1.34\u00A0kB');
+	t.is(prettyBytes(1337n, {nonBreakingSpace: true}), '1.34\u00A0kB');
+
+	// When space: false, nonBreakingSpace should be ignored
+	t.is(prettyBytes(1337, {space: false, nonBreakingSpace: true}), '1.34kB');
+	t.is(prettyBytes(1337n, {space: false, nonBreakingSpace: true}), '1.34kB');
+
+	// Test with signed option (special case with leading space for zero)
+	t.is(prettyBytes(0, {signed: true, nonBreakingSpace: true}), ' 0\u00A0B');
+	t.is(prettyBytes(0n, {signed: true, nonBreakingSpace: true}), ' 0\u00A0B');
+});

@@ -140,6 +140,15 @@ prettyBytes(1920);
 //=> '1.92 kB'
 ```
 
+##### nonBreakingSpace
+
+Type: `boolean`\
+Default: `false`
+
+Use a non-breaking space instead of a regular space to prevent the unit from wrapping to a new line.
+
+Has no effect when `space` is `false`.
+
 ## FAQ
 
 ### Why kB and not KB?
