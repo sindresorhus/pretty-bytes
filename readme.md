@@ -77,7 +77,8 @@ Format the number using the [Binary Prefix](https://en.wikipedia.org/wiki/Binary
 Type: `boolean | string`\
 Default: `false` *(No localization)*
 
-**Important:** Only the number and decimal separator are localized. The unit title is not and will not be localized.
+> [!IMPORTANT]
+> Only the number and decimal separator are localized. The unit title is not and will not be localized.
 
 - If `true`: Localize the output using the system/browser locale.
 - If `string`: Expects a [BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag) (For example: `en`, `de`, …)
@@ -90,7 +91,10 @@ Default: `undefined`
 
 The minimum number of fraction digits to display.
 
-If neither `minimumFractionDigits` or `maximumFractionDigits` are set, the default behavior is to round to 3 significant digits.
+If neither `minimumFractionDigits` nor `maximumFractionDigits` is set, the default behavior is to round to 3 significant digits.
+
+> [!NOTE]
+> When `minimumFractionDigits` or `maximumFractionDigits` is specified, values are truncated instead of rounded to provide more intuitive results for file sizes.
 
 ```js
 import prettyBytes from 'pretty-bytes';
@@ -110,7 +114,10 @@ Default: `undefined`
 
 The maximum number of fraction digits to display.
 
-If neither `minimumFractionDigits` or `maximumFractionDigits` are set, the default behavior is to round to 3 significant digits.
+If neither `minimumFractionDigits` nor `maximumFractionDigits` is set, the default behavior is to round to 3 significant digits.
+
+> [!NOTE]
+> When `minimumFractionDigits` or `maximumFractionDigits` is specified, values are truncated instead of rounded to provide more intuitive results for file sizes.
 
 ```js
 import prettyBytes from 'pretty-bytes';

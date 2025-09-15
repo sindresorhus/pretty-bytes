@@ -52,9 +52,11 @@ export type Options = {
 	/**
 	The minimum number of fraction digits to display.
 
-	If neither `minimumFractionDigits` or `maximumFractionDigits` are set, the default behavior is to round to 3 significant digits.
-
 	@default undefined
+
+	If neither `minimumFractionDigits` nor `maximumFractionDigits` is set, the default behavior is to round to 3 significant digits.
+
+	Note: When `minimumFractionDigits` or `maximumFractionDigits` is specified, values are truncated instead of rounded to provide more intuitive results for file sizes.
 
 	@example
 	```
@@ -73,9 +75,11 @@ export type Options = {
 	/**
 	The maximum number of fraction digits to display.
 
-	If neither `minimumFractionDigits` or `maximumFractionDigits` are set, the default behavior is to round to 3 significant digits.
-
 	@default undefined
+
+	If neither `minimumFractionDigits` nor `maximumFractionDigits` is set, the default behavior is to round to 3 significant digits.
+
+	Note: When `minimumFractionDigits` or `maximumFractionDigits` is specified, values are truncated instead of rounded to provide more intuitive results for file sizes.
 
 	@example
 	```

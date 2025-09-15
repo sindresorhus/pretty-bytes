@@ -121,15 +121,11 @@ export default function prettyBytes(number, options) {
 		number = -number;
 	}
 
-	let localeOptions;
-
-	if (options.minimumFractionDigits !== undefined) {
-		localeOptions = {minimumFractionDigits: options.minimumFractionDigits};
-	}
-
-	if (options.maximumFractionDigits !== undefined) {
-		localeOptions = {maximumFractionDigits: options.maximumFractionDigits, ...localeOptions};
-	}
+	const localeOptions = (options.minimumFractionDigits !== undefined || options.maximumFractionDigits !== undefined) ? {
+		...(options.minimumFractionDigits !== undefined && {minimumFractionDigits: options.minimumFractionDigits}),
+		...(options.maximumFractionDigits !== undefined && {maximumFractionDigits: options.maximumFractionDigits}),
+		roundingMode: 'trunc',
+	} : undefined;
 
 	if (number < 1) {
 		const numberString = toLocaleString(number, options.locale, localeOptions);
