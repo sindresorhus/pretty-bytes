@@ -41,10 +41,10 @@ export type Options = {
 	import prettyBytes from 'pretty-bytes';
 
 	prettyBytes(1000, {binary: true});
-	//=> '1000 bit'
+	//=> '1000 B'
 
 	prettyBytes(1024, {binary: true});
-	//=> '1 kiB'
+	//=> '1 KiB'
 	```
 	*/
 	readonly binary?: boolean;
@@ -105,7 +105,7 @@ export type Options = {
 	import prettyBytes from 'pretty-bytes';
 
 	prettyBytes(1920, {space: false});
-	//=> '1.9kB'
+	//=> '1.92kB'
 
 	prettyBytes(1920);
 	//=> '1.92 kB'
@@ -121,6 +121,34 @@ export type Options = {
 	@default false
 	*/
 	readonly nonBreakingSpace?: boolean;
+
+	/**
+	Pad the output to a fixed width by right-aligning it.
+
+	Useful for creating aligned columns in tables or progress bars.
+
+	If the output is longer than the specified width, no padding is applied.
+
+	Must be a non-negative integer. Throws a `TypeError` for invalid values.
+
+	@default undefined
+
+	@example
+	```
+	import prettyBytes from 'pretty-bytes';
+
+	prettyBytes(1337, {fixedWidth: 10});
+	//=> '   1.34 kB'
+
+	prettyBytes(100_000, {fixedWidth: 10});
+	//=> '  100 kB'
+
+	// Useful for progress bars and tables
+	[1000, 10_000, 100_000].map(bytes => prettyBytes(bytes, {fixedWidth: 8}));
+	//=> ['   1 kB', '  10 kB', ' 100 kB']
+	```
+	*/
+	readonly fixedWidth?: number;
 };
 
 /**

@@ -70,7 +70,7 @@ const log10 = numberOrBigInt => {
 
 	const string = numberOrBigInt.toString(10);
 
-	return string.length + Math.log10('0.' + string.slice(0, 15));
+	return string.length + Math.log10(`0.${string.slice(0, 15)}`);
 };
 
 const log = numberOrBigInt => {
@@ -89,6 +89,36 @@ const divide = (numberOrBigInt, divisor) => {
 	const integerPart = numberOrBigInt / BigInt(divisor);
 	const remainder = numberOrBigInt % BigInt(divisor);
 	return Number(integerPart) + (Number(remainder) / divisor);
+};
+
+const applyFixedWidth = (result, fixedWidth) => {
+	if (fixedWidth === undefined) {
+		return result;
+	}
+
+	if (typeof fixedWidth !== 'number' || !Number.isSafeInteger(fixedWidth) || fixedWidth < 0) {
+		throw new TypeError(`Expected fixedWidth to be a non-negative integer, got ${typeof fixedWidth}: ${fixedWidth}`);
+	}
+
+	if (fixedWidth === 0) {
+		return result;
+	}
+
+	return result.length < fixedWidth ? result.padStart(fixedWidth, ' ') : result;
+};
+
+const buildLocaleOptions = options => {
+	const {minimumFractionDigits, maximumFractionDigits} = options;
+
+	if (minimumFractionDigits === undefined && maximumFractionDigits === undefined) {
+		return undefined;
+	}
+
+	return {
+		...(minimumFractionDigits !== undefined && {minimumFractionDigits}),
+		...(maximumFractionDigits !== undefined && {maximumFractionDigits}),
+		roundingMode: 'trunc',
+	};
 };
 
 export default function prettyBytes(number, options) {
@@ -110,8 +140,11 @@ export default function prettyBytes(number, options) {
 
 	const separator = options.space ? (options.nonBreakingSpace ? '\u00A0' : ' ') : '';
 
-	if (options.signed && (typeof number === 'number' ? number === 0 : number === 0n)) {
-		return ` 0${separator}${UNITS[0]}`;
+	// Handle signed zero case
+	const isZero = typeof number === 'number' ? number === 0 : number === 0n;
+	if (options.signed && isZero) {
+		const result = ` 0${separator}${UNITS[0]}`;
+		return applyFixedWidth(result, options.fixedWidth);
 	}
 
 	const isNegative = number < 0;
@@ -121,28 +154,25 @@ export default function prettyBytes(number, options) {
 		number = -number;
 	}
 
-	const localeOptions = (options.minimumFractionDigits !== undefined || options.maximumFractionDigits !== undefined) ? {
-		...(options.minimumFractionDigits !== undefined && {minimumFractionDigits: options.minimumFractionDigits}),
-		...(options.maximumFractionDigits !== undefined && {maximumFractionDigits: options.maximumFractionDigits}),
-		roundingMode: 'trunc',
-	} : undefined;
+	const localeOptions = buildLocaleOptions(options);
+	let result;
 
 	if (number < 1) {
 		const numberString = toLocaleString(number, options.locale, localeOptions);
-		return prefix + numberString + separator + UNITS[0];
+		result = prefix + numberString + separator + UNITS[0];
+	} else {
+		const exponent = Math.min(Math.floor(options.binary ? log(number) / Math.log(1024) : log10(number) / 3), UNITS.length - 1);
+		number = divide(number, (options.binary ? 1024 : 1000) ** exponent);
+
+		if (!localeOptions) {
+			const minPrecision = Math.max(3, Math.floor(number).toString().length);
+			number = number.toPrecision(minPrecision);
+		}
+
+		const numberString = toLocaleString(Number(number), options.locale, localeOptions);
+		const unit = UNITS[exponent];
+		result = prefix + numberString + separator + unit;
 	}
 
-	const exponent = Math.min(Math.floor(options.binary ? log(number) / Math.log(1024) : log10(number) / 3), UNITS.length - 1);
-	number = divide(number, (options.binary ? 1024 : 1000) ** exponent);
-
-	if (!localeOptions) {
-		const minPrecision = Math.max(3, Number.parseInt(number, 10).toString().length);
-		number = number.toPrecision(minPrecision);
-	}
-
-	const numberString = toLocaleString(Number(number), options.locale, localeOptions);
-
-	const unit = UNITS[exponent];
-
-	return prefix + numberString + separator + unit;
+	return applyFixedWidth(result, options.fixedWidth);
 }

@@ -29,6 +29,15 @@ test('throws on invalid input', t => {
 	t.throws(() => {
 		prettyBytes(null);
 	});
+
+	// Invalid fixedWidth
+	t.throws(() => {
+		prettyBytes(1337, {fixedWidth: -1});
+	});
+
+	t.throws(() => {
+		prettyBytes(1337, {fixedWidth: 1.5});
+	});
 });
 
 test('converts bytes to human readable strings', t => {
@@ -245,4 +254,86 @@ test('nonBreakingSpace option', t => {
 	// Test with signed option (special case with leading space for zero)
 	t.is(prettyBytes(0, {signed: true, nonBreakingSpace: true}), ' 0\u00A0B');
 	t.is(prettyBytes(0n, {signed: true, nonBreakingSpace: true}), ' 0\u00A0B');
+});
+
+test('fixedWidth option', t => {
+	// Basic fixed width functionality
+	t.is(prettyBytes(1, {fixedWidth: 7}), '    1 B');
+	t.is(prettyBytes(100, {fixedWidth: 7}), '  100 B');
+	t.is(prettyBytes(1000, {fixedWidth: 7}), '   1 kB');
+	t.is(prettyBytes(100_000, {fixedWidth: 7}), ' 100 kB');
+	t.is(prettyBytes(1_000_000, {fixedWidth: 7}), '   1 MB');
+
+	// With bigint (representative cases only)
+	t.is(prettyBytes(1n, {fixedWidth: 7}), '    1 B');
+	t.is(prettyBytes(1_000_000n, {fixedWidth: 7}), '   1 MB');
+
+	// Different width
+	t.is(prettyBytes(1337, {fixedWidth: 10}), '   1.34 kB');
+
+	// With binary option
+	t.is(prettyBytes(1024, {fixedWidth: 8, binary: true}), '   1 KiB');
+	t.is(prettyBytes(10_240, {fixedWidth: 8, binary: true}), '  10 KiB');
+
+	// With signed option
+	t.is(prettyBytes(42, {fixedWidth: 8, signed: true}), '   +42 B');
+	t.is(prettyBytes(-13, {fixedWidth: 8, signed: true}), '   -13 B');
+	t.is(prettyBytes(0, {fixedWidth: 8, signed: true}), '     0 B');
+
+	// When output is wider than fixedWidth, no padding is applied
+	t.is(prettyBytes(1_000_000_000_000, {fixedWidth: 3}), '1 TB');
+
+	// With locale
+	t.is(prettyBytes(1337, {fixedWidth: 8, locale: 'de'}), ' 1,34 kB');
+
+	// With bits option
+	t.is(prettyBytes(1337, {fixedWidth: 10, bits: true}), ' 1.34 kbit');
+
+	// FixedWidth: undefined (default) should not add padding
+	t.is(prettyBytes(1337, {fixedWidth: undefined}), '1.34 kB');
+	t.is(prettyBytes(1337, {}), '1.34 kB'); // Default behavior
+
+	// With no space
+	t.is(prettyBytes(1337, {fixedWidth: 7, space: false}), ' 1.34kB');
+
+	// Edge cases
+	t.is(prettyBytes(1337, {fixedWidth: 0}), '1.34 kB'); // No padding for 0 width
+
+	// Invalid fixedWidth values should throw
+	t.throws(() => prettyBytes(1337, {fixedWidth: -5}), {
+		instanceOf: TypeError,
+		message: 'Expected fixedWidth to be a non-negative integer, got number: -5',
+	});
+	t.throws(() => prettyBytes(1337, {fixedWidth: Number.POSITIVE_INFINITY}), {
+		instanceOf: TypeError,
+		message: 'Expected fixedWidth to be a non-negative integer, got number: Infinity',
+	});
+	t.throws(() => prettyBytes(1337, {fixedWidth: Number.NaN}), {
+		instanceOf: TypeError,
+		message: 'Expected fixedWidth to be a non-negative integer, got number: NaN',
+	});
+	t.throws(() => prettyBytes(1337, {fixedWidth: 3.5}), {
+		instanceOf: TypeError,
+		message: 'Expected fixedWidth to be a non-negative integer, got number: 3.5',
+	});
+	t.throws(() => prettyBytes(1337, {fixedWidth: '10'}), {
+		instanceOf: TypeError,
+		message: 'Expected fixedWidth to be a non-negative integer, got string: 10',
+	});
+	t.throws(() => prettyBytes(1337, {fixedWidth: Number.MAX_SAFE_INTEGER + 1}), {
+		instanceOf: TypeError,
+		message: `Expected fixedWidth to be a non-negative integer, got number: ${Number.MAX_SAFE_INTEGER + 1}`,
+	});
+
+	// With fractional digits
+	t.is(prettyBytes(1500, {fixedWidth: 10, maximumFractionDigits: 1}), '    1.5 kB');
+
+	// With small numbers
+	t.is(prettyBytes(0.5, {fixedWidth: 8}), '   0.5 B');
+
+	// With negative numbers (non-signed)
+	t.is(prettyBytes(-1337, {fixedWidth: 8}), '-1.34 kB');
+
+	// With non-breaking space
+	t.is(prettyBytes(1337, {fixedWidth: 8, nonBreakingSpace: true}), ' 1.34\u00A0kB');
 });
