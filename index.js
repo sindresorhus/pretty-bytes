@@ -155,24 +155,20 @@ export default function prettyBytes(number, options) {
 	}
 
 	const localeOptions = buildLocaleOptions(options);
-	let result;
 
-	if (number < 1) {
-		const numberString = toLocaleString(number, options.locale, localeOptions);
-		result = prefix + numberString + separator + UNITS[0];
-	} else {
-		const exponent = Math.min(Math.floor(options.binary ? log(number) / Math.log(1024) : log10(number) / 3), UNITS.length - 1);
-		number = divide(number, (options.binary ? 1024 : 1000) ** exponent);
-
-		if (!localeOptions) {
-			const minPrecision = Math.max(3, Math.floor(number).toString().length);
-			number = number.toPrecision(minPrecision);
-		}
-
-		const numberString = toLocaleString(Number(number), options.locale, localeOptions);
-		const unit = UNITS[exponent];
-		result = prefix + numberString + separator + unit;
+	let exponent = 0;
+	if (number >= 1) {
+		exponent = Math.min(Math.floor(options.binary ? log(number) / Math.log(1024) : log10(number) / 3), UNITS.length - 1);
 	}
 
+	number = divide(number, (options.binary ? 1024 : 1000) ** exponent);
+
+	if (!localeOptions) {
+		const minPrecision = Math.max(3, Math.floor(number).toString().length);
+		number = Number(number.toPrecision(minPrecision));
+	}
+
+	const numberString = toLocaleString(number, options.locale, localeOptions);
+	const result = prefix + numberString + separator + UNITS[exponent];
 	return applyFixedWidth(result, options.fixedWidth);
 }

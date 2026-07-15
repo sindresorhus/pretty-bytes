@@ -45,6 +45,10 @@ test('converts bytes to human readable strings', t => {
 	t.is(prettyBytes(0n), '0 B');
 	t.is(prettyBytes(0.4), '0.4 B');
 	t.is(prettyBytes(0.7), '0.7 B');
+	t.is(prettyBytes(0.001), '0.001 B');
+	t.is(prettyBytes(0.0001), '0.0001 B');
+	t.is(prettyBytes(0.1005), '0.101 B');
+	t.is(prettyBytes(0.123_456), '0.123 B');
 	t.is(prettyBytes(10), '10 B');
 	t.is(prettyBytes(10n), '10 B');
 	t.is(prettyBytes(10.1), '10.1 B');
