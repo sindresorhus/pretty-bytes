@@ -63,6 +63,17 @@ test('converts bytes to human readable strings', t => {
 	t.is(prettyBytes(827_181 * 1e26), '82718100 YB');
 });
 
+test('rounding does not carry into an impossible unit', t => {
+	t.is(prettyBytes(999_999), '1 MB');
+	t.is(prettyBytes(999_999n), '1 MB');
+	t.is(prettyBytes(999_999_999), '1 GB');
+	t.is(prettyBytes(999_999, {bits: true}), '1 Mbit');
+	t.is(prettyBytes(1_048_575, {binary: true}), '1 MiB');
+	t.is(prettyBytes(1_073_741_823, {binary: true}), '1 GiB');
+	t.is(prettyBytes(999_999, {locale: 'de'}), '1 MB');
+	t.is(prettyBytes(-999_999), '-1 MB');
+});
+
 test('supports negative number', t => {
 	t.is(prettyBytes(-0.4), '-0.4 B');
 	t.is(prettyBytes(-0.7), '-0.7 B');

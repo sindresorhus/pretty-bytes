@@ -107,6 +107,18 @@ const applyFixedWidth = (result, fixedWidth) => {
 	return result.length < fixedWidth ? result.padStart(fixedWidth, ' ') : result;
 };
 
+const roundToPrecision = (number, exponent, base, maxExponent) => {
+	const minPrecision = Math.max(3, Math.floor(number).toString().length);
+	number = Number(number.toPrecision(minPrecision));
+
+	if (number >= base && exponent < maxExponent) {
+		number /= base;
+		exponent += 1;
+	}
+
+	return {number, exponent};
+};
+
 const buildLocaleOptions = options => {
 	const {minimumFractionDigits, maximumFractionDigits} = options;
 
@@ -164,8 +176,8 @@ export default function prettyBytes(number, options) {
 	number = divide(number, (options.binary ? 1024 : 1000) ** exponent);
 
 	if (!localeOptions) {
-		const minPrecision = Math.max(3, Math.floor(number).toString().length);
-		number = Number(number.toPrecision(minPrecision));
+		const base = options.binary ? 1024 : 1000;
+		({number, exponent} = roundToPrecision(number, exponent, base, UNITS.length - 1));
 	}
 
 	const numberString = toLocaleString(number, options.locale, localeOptions);
