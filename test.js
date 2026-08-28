@@ -1,6 +1,9 @@
 import test from 'ava';
 import prettyBytes from './index.js';
 
+const DECIMAL_UNITS = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+const BINARY_UNITS = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+
 test('throws on invalid input', t => {
 	t.throws(() => {
 		prettyBytes('');
@@ -61,6 +64,95 @@ test('converts bytes to human readable strings', t => {
 	t.is(prettyBytes(1e30), '1000000 YB');
 	t.is(prettyBytes(10n ** 30n), '1000000 YB');
 	t.is(prettyBytes(827_181 * 1e26), '82718100 YB');
+});
+
+test('rounding carries across every decimal unit boundary', t => {
+	for (let exponent = 0; exponent < DECIMAL_UNITS.length - 1; exponent++) {
+		const scale = 1000 ** exponent;
+		t.is(prettyBytes(999.499 * scale), `999 ${DECIMAL_UNITS[exponent]}`);
+		t.is(prettyBytes(999.5 * scale), `1 ${DECIMAL_UNITS[exponent + 1]}`);
+	}
+});
+
+test('rounding carries across every binary unit boundary', t => {
+	for (let exponent = 0; exponent < BINARY_UNITS.length - 1; exponent++) {
+		const scale = 1024 ** exponent;
+		t.is(prettyBytes(1023.499 * scale, {binary: true}), `1023 ${BINARY_UNITS[exponent]}`);
+		t.is(prettyBytes(1023.5 * scale, {binary: true}), `1 ${BINARY_UNITS[exponent + 1]}`);
+	}
+});
+
+test('rounding carries values above unit boundary thresholds', t => {
+	t.is(prettyBytes(999_999), '1 MB');
+	t.is(prettyBytes(999_999n), '1 MB');
+	t.is(prettyBytes(1_048_575, {binary: true}), '1 MiB');
+	t.is(prettyBytes(1_048_575n, {binary: true}), '1 MiB');
+});
+
+test('rounding carries BigInt values across unit boundaries', t => {
+	const configurations = [
+		{
+			base: 1000n,
+			options: {},
+			units: DECIMAL_UNITS,
+		},
+		{
+			base: 1024n,
+			options: {binary: true},
+			units: BINARY_UNITS,
+		},
+	];
+
+	for (const {base, options, units} of configurations) {
+		for (let exponent = 1; exponent < units.length - 1; exponent++) {
+			const scale = base ** BigInt(exponent);
+			const threshold = (((2n * base) - 1n) * scale) / 2n;
+			const valueBelowThreshold = threshold - (scale / base);
+			t.is(prettyBytes(valueBelowThreshold, options), `${base - 1n} ${units[exponent]}`);
+			t.is(prettyBytes(threshold, options), `1 ${units[exponent + 1]}`);
+		}
+	}
+});
+
+test('rounding carries with presentation options', t => {
+	t.is(prettyBytes(-999_500), '-1 MB');
+	t.is(prettyBytes(999_500, {signed: true}), '+1 MB');
+	t.is(prettyBytes(999_500, {bits: true}), '1 Mbit');
+	t.is(prettyBytes(1_048_064, {bits: true, binary: true}), '1 Mibit');
+	t.is(prettyBytes(999_500, {locale: 'de'}), '1 MB');
+	t.is(prettyBytes(999_500, {space: false}), '1MB');
+	t.is(prettyBytes(999_500, {nonBreakingSpace: true}), '1\u00A0MB');
+	t.is(prettyBytes(999_500, {fixedWidth: 8}), '    1 MB');
+});
+
+test('fractional digit options do not carry across unit boundaries', t => {
+	t.is(prettyBytes(999.999_999_999_999_3, {maximumFractionDigits: 1, locale: 'en'}), '999.9 B');
+	t.is(prettyBytes(999_999, {maximumFractionDigits: 1, locale: 'en'}), '999.9 kB');
+	t.is(prettyBytes(999_999n, {maximumFractionDigits: 1, locale: 'en'}), '999.9 kB');
+	t.is(prettyBytes(999_999, {minimumFractionDigits: 1, locale: 'en'}), '999.999 kB');
+	t.is(prettyBytes(1_048_575, {maximumFractionDigits: 1, binary: true, locale: 'en'}), '1,023.9 KiB');
+	t.is(prettyBytes(1_048_575n, {maximumFractionDigits: 1, binary: true, locale: 'en'}), '1,023.9 KiB');
+	t.is(prettyBytes(1_048_575, {minimumFractionDigits: 1, binary: true, locale: 'en'}), '1,023.999 KiB');
+});
+
+test('rounding does not carry beyond the largest unit', t => {
+	const decimalScale = 1000 ** 8;
+	t.is(prettyBytes(999.499 * decimalScale), '999 YB');
+	t.is(prettyBytes(999.5 * decimalScale), '1000 YB');
+
+	const decimalBigIntScale = 1000n ** 8n;
+	const decimalBigIntThreshold = (1999n * decimalBigIntScale) / 2n;
+	t.is(prettyBytes(decimalBigIntThreshold - (decimalBigIntScale / 1000n)), '999 YB');
+	t.is(prettyBytes(decimalBigIntThreshold), '1000 YB');
+
+	const binaryScale = 1024 ** 8;
+	t.is(prettyBytes(1023.499 * binaryScale, {binary: true}), '1023 YiB');
+	t.is(prettyBytes(1023.5 * binaryScale, {binary: true}), '1024 YiB');
+
+	const binaryBigIntScale = 1024n ** 8n;
+	const binaryBigIntThreshold = (2047n * binaryBigIntScale) / 2n;
+	t.is(prettyBytes(binaryBigIntThreshold - (binaryBigIntScale / 1024n), {binary: true}), '1023 YiB');
+	t.is(prettyBytes(binaryBigIntThreshold, {binary: true}), '1024 YiB');
 });
 
 test('supports negative number', t => {
