@@ -1,8 +1,13 @@
+import {execFile} from 'node:child_process';
+import process from 'node:process';
+import {promisify} from 'node:util';
 import test from 'ava';
 import prettyBytes from './index.js';
 
 const DECIMAL_UNITS = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 const BINARY_UNITS = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+const execFileAsync = promisify(execFile);
+const testWithLocaleOverride = process.platform === 'win32' ? test.skip : test;
 
 test('throws on invalid input', t => {
 	t.throws(() => {
@@ -319,6 +324,27 @@ test('fractional digits options', t => {
 	t.is(prettyBytes(32_768n, {minimumFractionDigits: 2, maximumFractionDigits: 3, binary: true}), '32.00 KiB');
 	t.is(prettyBytes(65_536, {minimumFractionDigits: 1, maximumFractionDigits: 3, binary: true}), '64.0 KiB');
 	t.is(prettyBytes(65_536n, {minimumFractionDigits: 1, maximumFractionDigits: 3, binary: true}), '64.0 KiB');
+});
+
+testWithLocaleOverride('fractional digits options do not localize without a locale', async t => {
+	const formattingScript = `
+		import prettyBytes from './index.js';
+		console.log(new Intl.NumberFormat().resolvedOptions().locale);
+		console.log(prettyBytes(1337, {maximumFractionDigits: 2}));
+		console.log(prettyBytes(1337n, {locale: false, maximumFractionDigits: 2}));
+	`;
+	const {stdout} = await execFileAsync(process.execPath, [
+		'--input-type=module',
+		'--eval',
+		formattingScript,
+	], {
+		env: {
+			...process.env,
+			LC_ALL: 'de-DE',
+		},
+	});
+
+	t.is(stdout, 'de-DE\n1.33 kB\n1.33 kB\n');
 });
 
 test('space option', t => {

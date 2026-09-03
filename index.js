@@ -48,9 +48,9 @@ const BIBIT_UNITS = [
 
 /*
 Formats the given number using `Number#toLocaleString`.
-- If locale is a string, the value is expected to be a locale-key (for example: `de`).
+- If locale is a string or array, the value is expected to be a BCP 47 language tag or list of language tags (for example: `de`).
 - If locale is true, the system default locale is used for translation.
-- If no value for locale is specified, the number is returned unmodified.
+- If locale is false or unspecified, formatting options are applied without localization; without options, the number is returned unmodified.
 */
 const toLocaleString = (number, locale, options) => {
 	let result = number;
