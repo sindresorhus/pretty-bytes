@@ -287,6 +287,8 @@ test('bits and binary option', t => {
 });
 
 test('fractional digits options', t => {
+	t.is(prettyBytes(1e30, {maximumFractionDigits: 1}), '1000000 YB');
+	t.is(prettyBytes(10n ** 30n, {locale: false, maximumFractionDigits: 1}), '1000000 YB');
 	t.is(prettyBytes(1900, {maximumFractionDigits: 1}), '1.9 kB');
 	t.is(prettyBytes(1900n, {maximumFractionDigits: 1}), '1.9 kB');
 	t.is(prettyBytes(1900, {minimumFractionDigits: 3}), '1.900 kB');

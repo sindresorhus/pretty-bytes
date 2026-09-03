@@ -56,8 +56,10 @@ const toLocaleString = (number, locale, options) => {
 	let result = number;
 	if (typeof locale === 'string' || Array.isArray(locale)) {
 		result = number.toLocaleString(locale, options);
-	} else if (locale === true || options !== undefined) {
+	} else if (locale === true) {
 		result = number.toLocaleString(undefined, options);
+	} else if (options !== undefined) {
+		result = number.toLocaleString('en-US', {...options, useGrouping: false});
 	}
 
 	return result;
